@@ -1,6 +1,6 @@
 <?php
 
-namespace Phalcon\Init\Dashboard;
+namespace Phalcon\Init\SAR;
 
 use Phalcon\DiInterface;
 use Phalcon\Loader;
@@ -13,9 +13,9 @@ class Module implements ModuleDefinitionInterface
         $loader = new Loader();
 
         $loader->registerNamespaces([
-            'Phalcon\Init\Dashboard\Controllers\Web' => __DIR__ . '/controllers/web',
-            'Phalcon\Init\Dashboard\Controllers\Api' => __DIR__ . '/controllers/api',
-            'Phalcon\Init\Dashboard\Models' => __DIR__ . '/models',
+            'Phalcon\Init\SAR\Controllers\Web' => __DIR__ . '/controllers/web',
+            'Phalcon\Init\SAR\Controllers\Api' => __DIR__ . '/controllers/api',
+            'Phalcon\Init\SAR\Models' => __DIR__ . '/models',
         ]);
 
         $loader->register();

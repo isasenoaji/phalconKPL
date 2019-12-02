@@ -1,14 +1,14 @@
 <?php
 
 return array(
-    'dashboard' => [
-        'namespace' => 'Phalcon\Init\Dashboard',
-        'webControllerNamespace' => 'Phalcon\Init\Dashboard\Controllers\Web',
-        'apiControllerNamespace' => 'Phalcon\Init\Dashboard\Controllers\Api',
-        'className' => 'Phalcon\Init\Dashboard\Module',
-        'path' => APP_PATH . '/modules/dashboard/Module.php',
+    'SAR' => [
+        'namespace' => 'Phalcon\Init\SAR',
+        'webControllerNamespace' => 'Phalcon\Init\SAR\Controllers\Web',
+        'apiControllerNamespace' => 'Phalcon\Init\SAR\Controllers\Api',
+        'className' => 'Phalcon\Init\SAR\Module',
+        'path' => APP_PATH . '/modules/SAR/Module.php',
         'defaultRouting' => true,
-        'defaultController' => 'dashboard',
+        'defaultController' => 'SAR',
         'defaultAction' => 'index'
     ],
 

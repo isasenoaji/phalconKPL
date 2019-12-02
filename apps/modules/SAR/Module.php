@@ -1,6 +1,6 @@
 <?php
 
-namespace Phalcon\Init\SAR;
+namespace KPL\SAR;
 
 use Phalcon\DiInterface;
 use Phalcon\Loader;
@@ -13,9 +13,9 @@ class Module implements ModuleDefinitionInterface
         $loader = new Loader();
 
         $loader->registerNamespaces([
-            'Phalcon\Init\SAR\Controllers\Web' => __DIR__ . '/controllers/web',
-            'Phalcon\Init\SAR\Controllers\Api' => __DIR__ . '/controllers/api',
-            'Phalcon\Init\SAR\Models' => __DIR__ . '/models',
+            'KPL\SAR\Controllers\Web' => __DIR__ . '/controllers/web',
+            'KPL\SAR\Controllers\Api' => __DIR__ . '/controllers/api',
+            'KPL\SAR\Domain\Models' => __DIR__ . '/domain/models',
         ]);
 
         $loader->register();

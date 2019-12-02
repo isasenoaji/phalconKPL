@@ -1,6 +1,6 @@
 <?php
 
-namespace Phalcon\Init\SAR\Controllers\Web;
+namespace KPL\SAR\Controllers\Web;
 
 use Phalcon\Mvc\Controller;
 

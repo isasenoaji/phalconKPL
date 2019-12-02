@@ -15,6 +15,10 @@ class ComposerStaticInitea81e84ec063c6af92c708a09b5ccc0f
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
+        'P' => 
+        array (
+            'PhpOption\\' => 10,
+        ),
         'D' => 
         array (
             'Dotenv\\' => 7,
@@ -26,19 +30,13 @@ class ComposerStaticInitea81e84ec063c6af92c708a09b5ccc0f
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'P' => 
-        array (
-            'PhpOption\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpoption/phpoption/src',
-            ),
         ),
     );
 
@@ -47,7 +45,6 @@ class ComposerStaticInitea81e84ec063c6af92c708a09b5ccc0f
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitea81e84ec063c6af92c708a09b5ccc0f::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitea81e84ec063c6af92c708a09b5ccc0f::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitea81e84ec063c6af92c708a09b5ccc0f::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

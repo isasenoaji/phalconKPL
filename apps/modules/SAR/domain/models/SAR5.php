@@ -2,10 +2,10 @@
 
 namespace KPL\SAR\Domain\Models;
 
-class SAR1 implements SAR {
+class SAR2 implements SAR {
     private $id;
     private $semester;
-    private $jenjang;
+    private $mataKuliah;
     private $rencanaCapaian;
     private $capaian;
 

@@ -3,6 +3,7 @@
         "phalcon/ide-stubs": "*"
     },
     "require": {
-        "vlucas/phpdotenv": "^3.3"
+        "vlucas/phpdotenv": "^3.3",
+        "ramsey/uuid": "^3.8"
     }
 }

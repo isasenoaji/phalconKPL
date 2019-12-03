@@ -8,7 +8,7 @@ class SAR {
     private $rencanaCapaian;
     private $capaian;
 
-    protected function __construct(SARId $id, string $semester, float $rencanaCapaian = 0, float $capaian = 0) {
+    protected function __construct(SARId $id, $semester, $rencanaCapaian = 0, $capaian = 0) {
         $this->id = $id;
         $this->semester = $semester;
         $this->rencanaCapaian = $rencanaCapaian;

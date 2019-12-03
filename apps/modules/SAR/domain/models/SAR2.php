@@ -2,12 +2,11 @@
 
 namespace KPL\SAR\Domain\Models;
 
-class SAR2 implements SAR {
-    private $id;
-    private $semester;
+class SAR2 extends SAR {
     private $fakultas;
-    private $rencanaCapaian;
-    private $capaian;
 
-    // TODO: methods and constructor
+    public function __construct(SARId $id, string $semester, string $fakultas, float $rencanaCapaian = 0, float $capaian = 0) {
+        parent::__construct($id, $semester, $rencanaCapaian, $capaian);
+        $this->fakultas = $fakultas;
+    }
 }

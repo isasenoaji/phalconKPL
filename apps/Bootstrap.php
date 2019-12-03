@@ -12,7 +12,7 @@ class Bootstrap extends Application
 	public function __construct($defaultModule)
 	{
 		$this->modules = require APP_PATH . '/config/modules.php';
-		$this->defaultModule= $defaultModule;
+		$this->defaultModule = $defaultModule;
 	}
 
 	public function init()

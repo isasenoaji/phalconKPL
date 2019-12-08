@@ -7,7 +7,7 @@ use KPL\SAR\Domain\Models\Sar;
 use KPL\SAR\Domain\Models\SarRepository;
 use Phalcon\DiInterface;
 
-class SqlSar2Repository implements SarRepository {
+class SqlSar3Repository implements SarRepository {
     protected $di;
 
     public function __construct(DiInterface $di) {

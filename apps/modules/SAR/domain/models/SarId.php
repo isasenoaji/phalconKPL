@@ -2,7 +2,7 @@
 namespace KPL\SAR\Domain\Models;
 use Ramsey\Uuid\Uuid;
 
-class SARId {
+class SarId {
     private $id;
 
     public function __construct($id = null) {
@@ -13,7 +13,7 @@ class SARId {
         return $this->id;
     }
     
-    public function equals(SARId $sarId) {
+    public function equals(SarId $sarId) {
         return $this->id === $sarId->id;
     }
 }

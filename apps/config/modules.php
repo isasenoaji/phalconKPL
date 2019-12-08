@@ -8,7 +8,7 @@ return array(
         'className' => 'KPL\SAR\Module',
         'path' => APP_PATH . '/modules/SAR/Module.php',
         'defaultRouting' => true,
-        'defaultController' => 'SAR',
+        'defaultController' => 'users',
         'defaultAction' => 'index'
     ],
 

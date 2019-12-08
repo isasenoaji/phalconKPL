@@ -15,7 +15,7 @@ class Module implements ModuleDefinitionInterface
         $loader->registerNamespaces([
             'KPL\SAR\Controllers\Web' => __DIR__ . '/controllers/web',
             'KPL\SAR\Controllers\Api' => __DIR__ . '/controllers/api',
-            'KPL\SAR\Domain\Models' => __DIR__ . '/domain/models',
+            'KPL\SAR\Domain\Model' => __DIR__ . '/domain/model',
         ]);
 
         $loader->register();

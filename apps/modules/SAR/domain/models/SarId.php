@@ -1,5 +1,7 @@
 <?php
+
 namespace KPL\SAR\Domain\Models;
+
 use Ramsey\Uuid\Uuid;
 
 class SarId {

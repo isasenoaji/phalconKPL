@@ -3,19 +3,17 @@
 namespace KPL\SAR\Domain\Models;
 
 
-class Sar3 {
+class Sar5 {
     private $id;
-    private $idJenjang;
-    private $idJurusan;
+    private $idMkKelas;
     private $capaian;
     private $sasaran;
     private $pengisi;
     private $isLocked;
 
-    public function __construct(SarId $id, $idJenjang, $idJurusan, $capaian, $sasaran, $pengisi, $isLocked = false) {
+    public function __construct(SarId $id, $idMkKelas, $capaian, $sasaran, $pengisi, $isLocked = false) {
         $this->id = $id;
-        $this->idJenjang = $idJenjang;
-        $this->idJurusan = $idJurusan;
+        $this->idMkKelas = $idMkKelas;
         $this->capaian = $capaian;
         $this->sasaran = $sasaran;
         $this->pengisi = $pengisi;
@@ -26,12 +24,8 @@ class Sar3 {
         return $this->id;
     }
 
-    public function idJenjang() {
-        return $this->idJenjang;
-    }
-
-    public function idJurusan() {
-        return $this->idJurusan;
+    public function idMkKelas() {
+        return $this->idMkKelas;
     }
 
     public function capaian() {

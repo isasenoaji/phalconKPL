@@ -1,7 +1,7 @@
 <?php
 
-namespace KPL\SAR\Domain\Models;
+namespace KPL\SAR\Domain\Model;
 
 interface UserRepository {
-
+	public function byId($nip, $password);
 }

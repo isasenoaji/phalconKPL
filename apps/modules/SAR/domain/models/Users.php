@@ -5,17 +5,17 @@ namespace KPL\SAR\Domain\Model;
 
 class Users {
 
-    public $nip;
-    public $nama;
-    public $idFakultas;
-    public $idJurusan;
-    public $jabatan;
+    private $nip;
+    private $nama;
+    private $id_fakultas;
+    private $id_jurusan;
+    private $jabatan;
 
-    public function __construct($nip, $nama, $idFakultas, $idJurusan, $jabatan) {
+    public function __construct($nip, $nama, $id_fakultas, $id_jurusan, $jabatan) {
         $this->nip = $nip;
         $this->nama = $nama;
-        $this->idFakultas = $idFakultas;
-        $this->idJurusan = $idJurusan;
+        $this->id_fakultas = $id_fakultas;
+        $this->id_jurusan = $id_jurusan;
         $this->jabatan = $jabatan;
     }
 
@@ -27,12 +27,16 @@ class Users {
         return $this->nama;
     }
 
-    public function idFakultas()
+    public function id_fakultas()
     {
-        return $this->idFakultas;
+        return $this->id_fakultas;
     }
 
-    public function idJurusan() {
-        return $this->idJurusan;
+    public function id_jurusan() {
+        return $this->id_jurusan;
+    }
+
+    public function jabatan() {
+        return $this->jabatan;
     }
 }

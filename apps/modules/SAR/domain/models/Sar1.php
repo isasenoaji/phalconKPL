@@ -7,7 +7,7 @@ class Sar1 extends Sar {
     private $idJenjang;
     private $idPeriode;
 
-    public function __construct(SarId $id, $idJenjang, $idPeriode, $capaian, $sasaran, $pengisi, $isLocked = false) {
+    public function __construct($id, $idJenjang, $idPeriode, $capaian, $sasaran, $pengisi, $isLocked = false) {
         $this->idJenjang = $idJenjang;
         $this->idPeriode = $idPeriode;
         parent::__construct($id, $capaian, $sasaran, $pengisi, $isLocked);

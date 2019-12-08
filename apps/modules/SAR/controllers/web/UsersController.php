@@ -7,13 +7,17 @@ use KPL\SAR\Domain\Model\Users;
 class UsersController extends Controller {  
 
    public function indexAction() {  
+      if ($this->session->has("auth")) {
+         return $this->dispatcher->forward(array( 
+         'controller' => 'sar', 'action' => 'index' 
+          )); 
+      }
       $this->view->pick('SAR/login');
    }  
 
    public function loginAction() { 
 
       if ($this->session->has("auth")) {
-         $this->flashSession->error("You've been logged! "); 
          return $this->dispatcher->forward(array( 
          'controller' => 'sar', 'action' => 'index' 
           )); 
@@ -37,7 +41,6 @@ class UsersController extends Controller {
             'id_fakultas' => $users->id_fakultas,
             'id_jurusan' => $users->id_jurusan,
          )); 
-         $this->flashSession->success("You've been successfully logged in"); 
       } 
       return $this->dispatcher->forward(array( 
          'controller' => 'sar', 'action' => 'index' 

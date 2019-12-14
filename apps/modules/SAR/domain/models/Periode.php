@@ -7,12 +7,12 @@ namespace KPL\SAR\Domain\Models;
 class Periode {
     private $id;
     private $nama;
-    private $is_active;
+    private $isActive;
 
-    public function __construct($id, $nama, $is_active) {
+    public function __construct($id, $nama, $isActive) {
         $this->id = $id;
         $this->nama = $nama;
-        $this->is_active;
+        $this->isActive = $isActive;
     }
 
     public function id() {
@@ -23,8 +23,8 @@ class Periode {
         return $this->nama;
     }
 
-    public function is_active() {
-        return $this->is_active;
+    public function isActive() {
+        return $this->isActive;
     }
 
 }

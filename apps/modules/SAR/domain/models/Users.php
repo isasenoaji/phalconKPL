@@ -7,7 +7,7 @@ class Users {
 
     private $nip;
     private $nama;
-    private $id_jurusan;
+    private $idJurusan;
     private $jabatan;
     private $password;
 
@@ -27,8 +27,8 @@ class Users {
         return $this->nama;
     }
 
-    public function id_jurusan() {
-        return $this->id_jurusan;
+    public function idJurusan() {
+        return $this->idJurusan;
     }
     public function jabatan() {
         return $this->jabatan;

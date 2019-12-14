@@ -48,10 +48,10 @@ class UsersController extends Controller {
             'id_jurusan' => $response->id_jurusan,
          )); 
       } 
-      $this->view->pick('SAR/warek/kelola sar/index');
-      // return $this->dispatcher->forward(array( 
-      //    'controller' => 'sar', 'action' => 'index' 
-      // )); 
+      // $this->view->pick('SAR/warek/kelola sar/index');
+      return $this->dispatcher->forward(array( 
+         'controller' => 'sar', 'action' => 'index' 
+      )); 
       
    }  
    public function logoutAction() { 

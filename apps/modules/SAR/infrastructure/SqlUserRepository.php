@@ -16,11 +16,11 @@ class SqlUserRepository implements UserRepository
         $this->di = $di;
     }
 
-    public function byId($nip,$password)
+    public function byId($nip)
     {
         $db = $this->di->getShared('db');
 
-        $sql = "SELECT nip, nama, id_fakultas, id_jurusan, jabatan, password
+        $sql = "SELECT nip, nama, id_jurusan, jabatan, password
                 FROM users 
                 WHERE nip = :nip";
 
@@ -32,15 +32,12 @@ class SqlUserRepository implements UserRepository
             $user = new Users(
                 $result['nip'],
                 $result['nama'],
-                $result['id_fakultas'],
                 $result['id_jurusan'],
-                $result['jabatan']
+                $result['jabatan'],
+                $result['password']
             );
 
-            if($result['password'] === $password){
-                return $user;
-            }
-            return null;
+            return $user;
         }
 
         return null;

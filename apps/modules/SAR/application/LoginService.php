@@ -17,12 +17,11 @@ class LoginService
 
     public function execute(LoginRequest $request)
     {
-        $user = $this->userRepository->byId($request->nip, $request->password);
-        if ($user) {
+        $user = $this->userRepository->byId($request->nip);
+        if ($user->password() === $request->password) {
             return new LoginResponse(
                 $user->nip(),
                 $user->nama(),
-                $user->id_fakultas(),
                 $user->id_jurusan(),
                 $user->jabatan()
             );

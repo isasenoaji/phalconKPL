@@ -5,6 +5,7 @@ use Phalcon\Mvc\Controller;
 use KPL\SAR\Domain\Model\Users;
 use KPL\SAR\Application\LoginRequest;
 use KPL\SAR\Application\LoginService;
+use Phalcon\Http\Response;
 
 class UsersController extends Controller {  
 
@@ -48,7 +49,7 @@ class UsersController extends Controller {
             'id_jurusan' => $response->id_jurusan,
          )); 
       } 
-      // $this->view->pick('SAR/warek/kelola sar/index');
+
       return $this->dispatcher->forward(array( 
          'controller' => 'sar', 'action' => 'index' 
       )); 

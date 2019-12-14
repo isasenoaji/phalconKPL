@@ -9,7 +9,7 @@ class SARController extends Controller
     public function indexAction()
     {
         
-        $this->view->pick('SAR/warek/kelola sar/index');
+        $this->view->pick('sar/warek/kelolasar/index');
     }
 
 }

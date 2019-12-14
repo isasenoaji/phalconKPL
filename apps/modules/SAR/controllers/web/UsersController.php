@@ -5,7 +5,6 @@ use Phalcon\Mvc\Controller;
 use KPL\SAR\Domain\Model\Users;
 use KPL\SAR\Application\LoginRequest;
 use KPL\SAR\Application\LoginService;
-use Phalcon\Http\Response;
 
 class UsersController extends Controller {  
 
@@ -47,6 +46,7 @@ class UsersController extends Controller {
             'nama' => $response->nama,
             'id_fakultas' => $response->id_fakultas,
             'id_jurusan' => $response->id_jurusan,
+            'jabatan' => $response->jabatan
          )); 
       } 
 

@@ -20,7 +20,7 @@ class SqlUserRepository implements UserRepository
     {
         $db = $this->di->getShared('db');
 
-        $sql = "SELECT nip, nama, id_jurusan, jabatan, password
+        $sql = "SELECT nip, nama, id_jurusan, password
                 FROM users 
                 WHERE nip = :nip";
 
@@ -33,9 +33,19 @@ class SqlUserRepository implements UserRepository
                 $result['nip'],
                 $result['nama'],
                 $result['id_jurusan'],
-                $result['jabatan'],
                 $result['password']
             );
+            $sql = "SELECT id_jabatan, id_user
+                FROM users_jabatan 
+                WHERE id_user = :nip";
+
+            $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
+                'nip' => $nip
+            ]);
+            
+            foreach($result as $row) {
+                $user->addJabatan($row['id_jabatan']);
+            }
 
             return $user;
         }

@@ -11,11 +11,11 @@ class Users {
     private $jabatan;
     private $password;
 
-    public function __construct($nip, $nama, $id_jurusan, $jabatan, $password) {
+    public function __construct($nip, $nama, $id_jurusan, $password) {
         $this->nip = $nip;
         $this->nama = $nama;
         $this->id_jurusan = $id_jurusan;
-        $this->jabatan = $jabatan;
+        $this->jabatan = array();
         $this->password = $password;
     }
 
@@ -30,9 +30,12 @@ class Users {
     public function id_jurusan() {
         return $this->id_jurusan;
     }
-
     public function jabatan() {
         return $this->jabatan;
+    }
+
+    public function addJabatan($value) {
+        array_push($this->jabatan, $value);
     }
     public function password() {
         return $this->password;

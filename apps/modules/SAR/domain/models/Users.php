@@ -7,14 +7,14 @@ class Users {
 
     private $nip;
     private $nama;
-    private $id_jurusan;
+    private $idJurusan;
     private $jabatan;
     private $password;
 
-    public function __construct($nip, $nama, $id_jurusan, $jabatan, $password) {
+    public function __construct($nip, $nama, $idJurusan, $jabatan, $password) {
         $this->nip = $nip;
         $this->nama = $nama;
-        $this->id_jurusan = $id_jurusan;
+        $this->idJurusan = $idJurusan;
         $this->jabatan = $jabatan;
         $this->password = $password;
     }
@@ -27,8 +27,8 @@ class Users {
         return $this->nama;
     }
 
-    public function id_jurusan() {
-        return $this->id_jurusan;
+    public function idJurusan() {
+        return $this->idJurusan;
     }
 
     public function jabatan() {

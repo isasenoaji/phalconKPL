@@ -22,7 +22,7 @@ class LoginService
             return new LoginResponse(
                 $user->nip(),
                 $user->nama(),
-                $user->id_jurusan(),
+                $user->idJurusan(),
                 $user->jabatan()
             );
         }

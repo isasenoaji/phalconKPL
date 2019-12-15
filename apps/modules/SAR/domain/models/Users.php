@@ -11,10 +11,10 @@ class Users {
     private $jabatan;
     private $password;
 
-    public function __construct($nip, $nama, $id_jurusan, $password) {
+    public function __construct($nip, $nama, $idJurusan, $password) {
         $this->nip = $nip;
         $this->nama = $nama;
-        $this->id_jurusan = $id_jurusan;
+        $this->idJurusan = $idJurusan;
         $this->jabatan = array();
         $this->password = $password;
     }

@@ -10,11 +10,11 @@ class LoginResponse
     public $id_jurusan;
     public $jabatan;
 
-    public function __construct($nip, $nama, $id_jurusan, $jabatan)
+    public function __construct($nip, $nama, $idJurusan, $jabatan)
     {
         $this->nip = $nip;
         $this->nama = $nama;
-        $this->id_jurusan = $id_jurusan;
+        $this->idJurusan = $idJurusan;
         $this->jabatan = $jabatan;
     }
 

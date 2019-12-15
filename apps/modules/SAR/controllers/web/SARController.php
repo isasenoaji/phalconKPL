@@ -17,15 +17,13 @@ class SARController extends Controller
 
         foreach($jabatanCollection as $jabatan){
            $requestSar = new SarRequest($NIP,$jabatan);
-           $sarRepository =$this->di->get('sql_sars_repository',array($jabatan));
+           $sarRepository = $this->di->get('sql_sars_repository',array($jabatan));
            $serviceSar = new SarService($sarRepository);
            $responseSar = $serviceSar->execute($requestSar);
            array_push($sarCollection,$responseSar);
 
         }
-exit;
-        var_dump($sarCollection);
-        exit;
+        
         $this->view->pick('sar/warek/kelolasar/index');
     }
 

@@ -33,7 +33,7 @@
             <div class="ibox-content">
           		{{ flashSession.output() }}
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover dataTables-example" style="font-size: small;">
+                    <table class="table table-striped table-bordered table-hover" style="font-size: small;">
                         <thead>
                             <tr>
                                 <th>No</th>

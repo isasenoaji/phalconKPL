@@ -5,11 +5,11 @@ namespace KPL\SAR\domain\models;
 
 
 class Sar {
-    private $id;
-    private $capaian;
-    private $sasaran;
-    private $pengisi;
-    private $isLocked;
+    public $id;
+    public $capaian;
+    public $sasaran;
+    public $pengisi;
+    public $isLocked;
 
     protected function __construct($id, $capaian, $sasaran, $pengisi, $isLocked) {
         $this->id = $id;

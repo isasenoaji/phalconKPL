@@ -33,17 +33,24 @@
             <div class="ibox-content">
           		{{ flashSession.output() }}
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" style="font-size: small;">
+                    <table class="table table-striped table-hover" style="font-size: small;">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kategori</th>
-                                <th>Isi Jarkom</th>
-                                <th>Waktu Jarkom</th>
+                                <th>Jenjang</th>
+                                <th>Sasaran</th>
+                                <th>Capaian</th>
                             </tr>
                         </thead>
                         <tbody>
-                        	
+                            {% for sar in sarCollection  %}
+                                <tr>
+                                    <td>1</td>
+                                    <td>{{ sar. }}</td>
+                                    <td>{{ sar['capaian'] }}</td>
+                                    <td>1</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

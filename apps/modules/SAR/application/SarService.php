@@ -16,6 +16,7 @@ class SarService
     public function execute(SarRequest $request)
     {
         $SarAssigment = $this->sarRepository->All($request->NIP);
-        return new SarResponse($SarAssigment);
+        //echo $this->sarRepository->getTipe();exit;
+        return new SarResponse($SarAssigment,$this->sarRepository->getTipe());
     }
 }

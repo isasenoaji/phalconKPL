@@ -25,9 +25,9 @@ $di->setShared('sql_users_repository', function() use ($di) {
     return $repo;
 });
 
-$di->set('sql_sars_repository', function($jabatan) use ($di) {
+$di->setShared('sql_sars_repository', function($jabatan) use ($di) {
     $tipeSar = $jabatan-1;
-    echo $tipeSar;
+    // echo $tipeSar;
     if($tipeSar==1){
         $repo = new SqlSar1Repository($di);
     }

@@ -4,8 +4,8 @@ namespace KPL\SAR\Domain\Models;
 
 
 class Sar1 extends Sar {
-    private $idJenjang;
-    private $idPeriode;
+    public $idJenjang;
+    public $idPeriode;
 
     public function __construct($id, $idJenjang, $idPeriode, $capaian, $sasaran, $pengisi, $isLocked = false) {
         $this->idJenjang = $idJenjang;

@@ -6,3 +6,11 @@ $router->add('/dashboard'
     'controller' => 'Home',
     'action'     => 'index',
 ]);
+
+$router->add('/kelolasar-1'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar1',
+    'action'     => 'index',
+]);

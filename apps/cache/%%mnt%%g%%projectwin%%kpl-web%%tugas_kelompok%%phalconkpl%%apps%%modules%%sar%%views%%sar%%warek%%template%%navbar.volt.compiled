@@ -21,26 +21,26 @@
             <li id="sidebar-home">
                 <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Dashboard</span></a>
             </li>
-            <?php foreach ($tipeSar as $sarTipe) { ?>
-                <?php if ($sarTipe === 'Wakil Rektor') { ?>
+            <?php foreach ($TipeSar as $tipe) { ?>
+                <?php if ($tipe === 1) { ?>
                 <li id="sidebar-sar">
-                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 1</span></a>
+                    <a href="/kelolasar1"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 1</span></a>
                 </li>
-                <?php } elseif ($sarTipe === 'Dekan Fakultas') { ?>
+                <?php } elseif ($tipe === 2) { ?>
                 <li id="sidebar-sar">
                     <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 2</span></a>
                 </li>
-                <?php } elseif ($sarTipe === 'Ketua Jurusan') { ?>
+                <?php } elseif ($tipe === 3) { ?>
                 <li id="sidebar-sar">
                     <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 3</span></a>
                 </li>
-                <?php } elseif ($sarTipe === 'Ketua RMK') { ?>
+                <?php } elseif ($tipe === 4) { ?>
                 <li id="sidebar-sar">
                     <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 4</span></a>
                 </li>
-                <?php } elseif ($sarTipe === 'Dosen') { ?>
+                <?php } elseif ($tipe === 5) { ?>
                 <li id="sidebar-sar">
-                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR</span></a>
+                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 5</span></a>
                 </li>
                 <?php } ?>
             <?php } ?>

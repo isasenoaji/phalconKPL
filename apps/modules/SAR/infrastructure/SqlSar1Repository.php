@@ -3,10 +3,10 @@
 
 namespace KPL\SAR\Infrastructure;
 
-use KPL\SAR\Domain\Models\Sar;
-use KPL\SAR\Domain\Models\SarRepository;
+use KPL\SAR\Domain\Model\Sar;
+use KPL\SAR\Domain\Model\SarRepository;
 use Phalcon\DiInterface;
-use KPL\SAR\Domain\Models\Sar1;
+use KPL\SAR\Domain\Model\Sar1;
 
 class SqlSar1Repository implements SarRepository {
     protected $di;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace KPL\SAR\domain\models;
+namespace KPL\SAR\Domain\Model;
 
 
 class Sar {

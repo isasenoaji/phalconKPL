@@ -5,6 +5,9 @@ use Phalcon\Mvc\Controller;
 use KPL\SAR\Domain\Model\Users;
 use KPL\SAR\Application\LoginRequest;
 use KPL\SAR\Application\LoginService;
+use KPL\SAR\Application\SarListedRequest;
+use KPL\SAR\Application\SarListedService;
+
 
 class UsersController extends Controller {  
 
@@ -23,7 +26,7 @@ class UsersController extends Controller {
 
       if ($this->session->has("auth")) {
          return $this->dispatcher->forward(array( 
-         'controller' => 'sar', 'action' => 'index' 
+         'controller' => 'home', 'action' => 'index' 
           )); 
       } 
       if ($this->request->isPost()) { 
@@ -49,7 +52,15 @@ class UsersController extends Controller {
             'jabatan' => $response->jabatan
          )); 
       } 
+      
+      $RequestListSar = new SarListedRequest($nip);
+      $SarListedRepository = $this->di->get('sql_sarlisted_repository');
+      $ServiceSarListed = new SarListedService($SarListedRepository);
+      $ResponseSarListed = $ServiceSarListed->execute($RequestListSar);
+      $ListSar = $ResponseSarListed->list;
 
+      $this->session->set('ListSar',$ListSar,);
+      
       return $this->dispatcher->forward(array( 
          'controller' => 'home', 'action' => 'index' 
       )); 

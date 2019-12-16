@@ -3,8 +3,8 @@
 
 namespace KPL\SAR\Infrastructure;
 
-use KPL\SAR\Domain\Models\Sar;
-use KPL\SAR\Domain\Models\SarRepository;
+use KPL\SAR\Domain\Model\Sar;
+use KPL\SAR\Domain\Model\SarRepository;
 use Phalcon\DiInterface;
 
 class SqlSar2Repository implements SarRepository {

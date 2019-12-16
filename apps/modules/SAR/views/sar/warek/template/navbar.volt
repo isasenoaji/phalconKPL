@@ -21,26 +21,26 @@
             <li id="sidebar-home">
                 <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Dashboard</span></a>
             </li>
-            {% for sarTipe in tipeSar  %}
-                {% if sarTipe === "Wakil Rektor" %}
+            {% for tipe in TipeSar  %}
+                {% if tipe === 1 %}
                 <li id="sidebar-sar">
-                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 1</span></a>
+                    <a href="/kelolasar1"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 1</span></a>
                 </li>
-                {% elseif sarTipe === "Dekan Fakultas" %}
+                {% elseif tipe === 2 %}
                 <li id="sidebar-sar">
                     <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 2</span></a>
                 </li>
-                {% elseif sarTipe === "Ketua Jurusan" %}
+                {% elseif tipe === 3 %}
                 <li id="sidebar-sar">
                     <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 3</span></a>
                 </li>
-                {% elseif sarTipe === "Ketua RMK" %}
+                {% elseif tipe === 4 %}
                 <li id="sidebar-sar">
                     <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 4</span></a>
                 </li>
-                {% elseif sarTipe === "Dosen" %}
+                {% elseif tipe === 5 %}
                 <li id="sidebar-sar">
-                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR</span></a>
+                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 5</span></a>
                 </li>
                 {% endif %}
             {% endfor %}

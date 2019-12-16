@@ -4,14 +4,11 @@ namespace KPL\SAR\Domain\Model;
 
 
 class Sar5 extends Sar {
-    private $idMkKelas;
+    private $MkKelas;
 
-    public function __construct($id, $idMkKelas, $capaian, $sasaran, $pengisi, $isLocked = false) {
+    public function __construct($id, $idMkKelas, $capaian, $sasaran, $pengisi, $IsLocked = false) {
         $this->idMkKelas = $idMkKelas;
-        parent::__construct($id, $capaian, $sasaran, $pengisi, $isLocked);
+        parent::__construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked);
     }
 
-    public function idMkKelas() {
-        return $this->idMkKelas;
-    }
 }

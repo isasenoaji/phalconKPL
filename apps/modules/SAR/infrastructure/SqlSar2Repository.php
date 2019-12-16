@@ -26,9 +26,13 @@ class SqlSar2Repository implements SarRepository {
     public function getAllSarMaster($nip): ?array {
         $db = $this->di->getShared('db');
 
-            $sql = "SELECT jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode
-                    FROM sar1,periode,jenjang
-                    WHERE sar1.nip = :nip and periode.id = sar1.id_periode and periode.status = 1";
+            $sql = "SELECT jenjang.nama as nama_jenjang,sar.id,sar.id_fakultas,
+                          sar.id_jenjang, sar.id_periode, sar.capaian, 
+            sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
+            FROM sar2 sar,periode,jenjang
+            WHERE sar.nip =:nip and periode.id = sar.id_periode 
+            and periode.status = 1 AND jenjang.id = sar.id_jenjang";
+                 
 
         $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
             'nip' => $nip,

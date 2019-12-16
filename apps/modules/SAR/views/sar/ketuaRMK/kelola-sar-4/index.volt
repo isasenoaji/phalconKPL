@@ -1,19 +1,19 @@
 {% extends 'sar/template/index.volt' %}
 {% block navbar %}
-{% include 'sar/warek/template/navbar.volt' %}
+{% include 'sar/template/navbar.volt' %}
 {% endblock %}
 {% block content %}
 
 <div id="wrapper">    
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Kelola SAR</h2>
+        <h2>Kelola SAR 4</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="">Dashboard</a>
             </li>
             <li class="active">
-                <strong>Kelola SAR</strong>
+                <strong>Kelola SAR 4</strong>
             </li>
         </ol>
     </div>
@@ -23,24 +23,25 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h3>SAR 1</h3>
-                <div class="text-right">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form">
-                    APALAH
-                    </button>
-                </div>
+                <h3><center><strong>Rumpun Mata Kuliah</strong></center></h3>
             </div>
             <div class="ibox-content">
           		{{ flashSession.output() }}
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover" style="font-size: small;">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Jenjang</th>
-                                <th>Sasaran</th>
-                                <th>Capaian</th>
-                                <th>Action</th>
+                                <th rowspan="2">No</th>
+                                <th rowspan="2"><center>Rumpun Mata Kuliah</center></th>
+                                <th colspan="3"><center>Departemen</center></th>
+                                <th rowspan="2"><center>Sasaran</center></th>
+                                <th rowspan="2"><center>Capaian</center></th>
+                                <th rowspan="2"><center>Action</center></th>
+                                <tr>
+                                    <th>Nama Departemen</th>
+                                    <th>Sasaran</th>
+                                    <th>Capaian</th>
+                                </tr>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,21 +49,25 @@
                             {% for sar in SarAssigment %}
                             <tr>
                                 <td>{{ i }}</td>
-                                <td>{{ sar['idJenjang'] }}</td>
-                                <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
-                                <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
+                                <td>{{ sar['rmk'] }}</td>
+                                <td>{{ sar['jurusan'] }}</td>
+                                <td>{{ sar['sasaran_jurusan'] }}</td>
+                                <td>{{ sar['capaian_jurusan'] }}</td>
+                                <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran']}}</td>
+                                <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian'] }}</td>
                                 <td>
                                     <form id="button-edit" method="POST" action="">
                                         <input type="hidden" name="id" value="">
                                         <button type="button" class="btn btn-warning btn-xs" 
                                             data-id = "{{ sar['id'] }}"
-                                            data-jenjang = "{{ sar['idJenjang'] }}"
+                                            data-rmk = "{{ sar['rmk'] }}"
                                             data-sasaran = "{{ sar['sasaran'] }}"
                                             data-capaian = "{{ sar['capaian'] }}"
                                             data-toggle="modal" data-target="#modal-edit"
                                             ><span class="fa fa-pencil"></span> Ubah</button>
                                     </form>
                                 </td>
+                                
                             </tr>
                                 {% set i = i + 1 %}
                             {% endfor %}
@@ -74,7 +79,7 @@
     </div>
 </div>
 </div>
-{% include 'sar/warek/kelola-sar-1/ModalEdit.volt' %}
+{% include 'sar/ketuaRMK/kelola-sar-4/ModalEdit.volt' %}
 {% endblock %}
 
 {% block addscript %}
@@ -123,14 +128,14 @@
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 
                 var id = button.data('id');
-                var jenjang = button.data('jenjang');
+                var rmk = button.data('rmk');
                 var sasaran = button.data('sasaran');
                 var capaian = button.data('capaian');
 
                 var modal = $(this);
 
                 modal.find('.modal-body #id').val(id);
-                modal.find('.modal-body #edt_jenjang').val(jenjang);
+                modal.find('.modal-body #edt_rmk').val(rmk);
                 modal.find('.modal-body #edt_sasaran').val(sasaran);
                 modal.find('.modal-body #edt_capaian').val(capaian);
             });

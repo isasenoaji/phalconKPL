@@ -1,4 +1,4 @@
-a:8:{i:0;s:3782:"<!DOCTYPE html>
+a:8:{i:0;s:3784:"<!DOCTYPE html>
 <head>
     <title>SAR</title>
     <link href="<?= $this->url->get('https://phalcon-init.local/asset/css/bootstrap.min.css') ?>" rel="stylesheet">
@@ -33,6 +33,7 @@ a:8:{i:0;s:3782:"<!DOCTYPE html>
 <link href="<?= $this->url->get('https://phalcon-init.local/asset/css/plugins/dualListbox/bootstrap-duallistbox.min.css') ?>" rel="stylesheet">
 
 <link href="<?= $this->url->get('https://phalcon-init.local/asset/css/plugins/select2/select2.min.css') ?>" rel="stylesheet">
+
 </head>
 <body>
 	  ";s:6:"navbar";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:77:"C:\git\phalcon-init\apps\modules\SAR\config/../views/\sar/template/index.volt";s:4:"line";i:7;}}i:1;s:765:"

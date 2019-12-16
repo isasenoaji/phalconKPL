@@ -102,7 +102,7 @@
     </div>
 </div>
 </div>
-{% include 'sar/warek/kelola-sar-1/ModalEdit.volt' %}
+{% include 'sar/dekan/kelola-sar-2/ModalEdit.volt' %}
 {% endblock %}
 
 {% block addscript %}

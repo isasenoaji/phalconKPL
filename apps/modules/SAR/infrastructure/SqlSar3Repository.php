@@ -8,11 +8,9 @@ use KPL\SAR\Domain\Model\Sar3;
 
 class SqlSar3Repository implements SarRepository {
     protected $di;
-    protected $tipe;
 
     public function __construct(DiInterface $di) {
         $this->di = $di;
-        $this->tipe = 1;
     }
 
     public function save(Sar $sar) {

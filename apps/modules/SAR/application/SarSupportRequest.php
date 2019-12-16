@@ -2,7 +2,7 @@
 
 namespace KPL\SAR\Application;
 
-class SarRequest
+class SarSupportRequest
 {
     public $tipeSar;
     public $NIP;

@@ -4,7 +4,7 @@ namespace KPL\SAR\Application;
 
 use KPL\SAR\domain\models\sar;
 
-class SarResponse
+class SarSupportResponse
 {
     public $tipe;
     public $SarAssigment;

@@ -18,6 +18,9 @@
                 SAR
             </div>
         </li>
+            <li id="sidebar-home">
+                <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Dashboard</span></a>
+            </li>
             {% for sarTipe in tipeSar  %}
                 {% if sarTipe === "Wakil Rektor" %}
                 <li id="sidebar-sar">

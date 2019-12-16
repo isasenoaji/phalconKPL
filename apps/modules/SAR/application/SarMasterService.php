@@ -3,7 +3,7 @@
 namespace KPL\SAR\Application;
 use KPL\SAR\Domain\Models\SarRepository;
 
-class SarService
+class SarMasterService
 {
     private $sarRepository;
 
@@ -12,10 +12,10 @@ class SarService
         $this->sarRepository = $sarRepository;
     }
 
-    public function execute(SarRequest $request)
+    public function execute(SarMasterRequest $request)
     {
         $SarAssigment = $this->sarRepository->All($request->NIP);
         //echo $this->sarRepository->getTipe();exit;
-        return new SarResponse($SarAssigment,$this->sarRepository->getTipe());
+        return new SARMasterResponse($SarAssigment,$this->sarRepository->getTipe());
     }
 }

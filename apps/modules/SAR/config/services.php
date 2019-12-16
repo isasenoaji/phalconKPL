@@ -39,13 +39,13 @@ $di->set('sql_sars_repository', function($TIPESAR) use ($di) {
         $repo = new SqlSar2Repository($di);
     }
     else if($TIPESAR ==  3){
-        $repo = new SqlSar1Repository($di);
+        $repo = new SqlSar3Repository($di);
     }
     else if($TIPESAR == 4){
-        $repo = new SqlSar1Repository($di);
+        $repo = new SqlSar4Repository($di);
     }
     else if($TIPESAR == 5){
-        $repo = new SqlSar1Repository($di);
+        $repo = new SqlSar5Repository($di);
     }
     
     return $repo;

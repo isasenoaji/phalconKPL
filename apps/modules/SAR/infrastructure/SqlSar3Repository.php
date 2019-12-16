@@ -26,18 +26,14 @@ class SqlSar3Repository implements SarRepository {
     public function getAllSarMaster($nip): ?array {
         $db = $this->di->getShared('db');
 
-            $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode, 
-			                sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode,jurusan.nama as jurusan
-                    FROM sar3 sar,periode,jenjang,jurusan
-                    WHERE sar.nip =:nip and periode.id = sar.id_periode and 
-                        periode.status = 1 AND jenjang.id = sar.id_jenjang
-                        and jurusan.id = sar.id_jurusan
-                    ";
+        $sql = "SELECT s.*, p.nama as nama_periode, js.nama as nama_jurusan, jj.nama as nama_jenjang
+                FROM sar3 s, periode p, jurusan js, jenjang jj
+                WHERE s.id_periode = p.id AND p.status = 1 AND s.id_jenjang = jj.id AND s.id_jurusan = js.id AND s.nip = :nip;
+                ";
 
         $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
             'nip' => $nip,
         ]);
-        
       
         if ($result) {
             $SarComponents = [];
@@ -46,9 +42,9 @@ class SqlSar3Repository implements SarRepository {
                                 $row['id'],
                                 $row['nama_jenjang'],
                                 $row['nama_periode'],
-                                $row['jurusan'],
-                                $row['capaian'],
+                                $row['nama_jurusan'],
                                 $row['sasaran'],
+                                $row['capaian'],
                                 $row['nip'],
                                 $row['locked']
                 );

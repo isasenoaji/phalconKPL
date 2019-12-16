@@ -1,19 +1,19 @@
 {% extends 'sar/template/index.volt' %}
 {% block navbar %}
-{% include 'sar/warek/template/navbar.volt' %}
+{% include 'sar/template/navbar.volt' %}
 {% endblock %}
 {% block content %}
 
 <div id="wrapper">    
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Kelola SAR</h2>
+        <h2>Kelola SAR 3</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="">Dashboard</a>
             </li>
             <li class="active">
-                <strong>Kelola SAR</strong>
+                <strong>Kelola SAR 3</strong>
             </li>
         </ol>
     </div>
@@ -23,12 +23,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h3>SAR 1</h3>
-                <div class="text-right">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form">
-                    APALAH
-                    </button>
-                </div>
+                <h3><center><strong>Institut</strong></center></h3>
             </div>
             <div class="ibox-content">
           		{{ flashSession.output() }}
@@ -45,10 +40,75 @@
                         </thead>
                         <tbody>
                             {% set i = 1 %}
-                            {% for sar in SarAssigment %}
+                            {% for sar in SarAssigmentS2 %}
                             <tr>
                                 <td>{{ i }}</td>
-                                <td>{{ sar['idJenjang'] }}</td>
+                                <td>{{ sar['jenjang'] }}</td>
+                                <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
+                                <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
+                                <td>
+                                    -
+                                </td>
+                            </tr>
+                                {% set i = i + 1 %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="ibox-title">
+                <h3><center><strong>Fakultas</strong></center></h3>
+            </div>
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" style="font-size: small;">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Jenjang</th>
+                                <th>Sasaran</th>
+                                <th>Capaian</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set i = 1 %}
+                            {% for sar in SarAssigmentS1 %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ sar['jenjang'] }}</td>
+                                <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
+                                <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
+                                <td>
+                                    -
+                                </td>
+                            </tr>
+                                {% set i = i + 1 %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div><div class="ibox-title">
+                <h3><center><strong>Departemen</strong></center></h3>
+            </div>
+            <div class="ibox-content">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" style="font-size: small;">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Jenjang</th>
+                                <th>Sasaran</th>
+                                <th>Capaian</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set i = 1 %}
+                            {% for sar in SarAssigmentM %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ sar['jenjang'] }}</td>
                                 <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
                                 <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
                                 <td>
@@ -56,7 +116,7 @@
                                         <input type="hidden" name="id" value="">
                                         <button type="button" class="btn btn-warning btn-xs" 
                                             data-id = "{{ sar['id'] }}"
-                                            data-jenjang = "{{ sar['idJenjang'] }}"
+                                            data-jenjang = "{{ sar['jenjang'] }}"
                                             data-sasaran = "{{ sar['sasaran'] }}"
                                             data-capaian = "{{ sar['capaian'] }}"
                                             data-toggle="modal" data-target="#modal-edit"

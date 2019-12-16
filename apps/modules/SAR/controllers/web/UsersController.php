@@ -59,7 +59,7 @@ class UsersController extends Controller {
       $ResponseSarListed = $ServiceSarListed->execute($RequestListSar);
       $ListSar = $ResponseSarListed->list;
 
-      $this->session->set('ListSar',$ListSar,);
+      $this->session->set('ListSar',$ListSar);
       
       return $this->dispatcher->forward(array( 
          'controller' => 'home', 'action' => 'index' 

@@ -15,6 +15,9 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 	    'action' => isset($modules[$defaultModule]['defaultAction']) ? $modules[$defaultModule]['defaultAction'] : 'index'
 	]);
 	
+	$webModuleRouting = APP_PATH . '/modules/'. $defaultModule .'/config/routes/web.php';
+	include $webModuleRouting;
+	
 	/**
 	 * Not Found Routing
 	 */
@@ -90,7 +93,7 @@ $di['router'] = function() use ($defaultModule, $modules, $di, $config) {
 			));	
 		} else {
 			
-			$webModuleRouting = APP_PATH . '/modules/'. $moduleName .'/config/routes/web.php';
+		
 			
 			if (file_exists($webModuleRouting) && is_file($webModuleRouting)) {
 				include $webModuleRouting;

@@ -8,7 +8,9 @@ use KPL\SAR\Domain\Models\SarRepository;
 use Phalcon\DiInterface;
 
 class SqlSar2Repository implements SarRepository {
+    privatee $TIPE;
     protected $di;
+
 
     public function __construct(DiInterface $di) {
         $this->di = $di;

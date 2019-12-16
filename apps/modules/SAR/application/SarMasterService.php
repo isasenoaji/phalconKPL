@@ -14,7 +14,7 @@ class SarMasterService
 
     public function execute(SarMasterRequest $request)
     {
-        $SarAssigment = $this->sarRepository->All($request->NIP);
+        $SarAssigment = $this->sarRepository->getAllSarMaster($request->NIP);
         //echo $this->sarRepository->getTipe();exit;
         return new SARMasterResponse($SarAssigment,$this->sarRepository->getTipe());
     }

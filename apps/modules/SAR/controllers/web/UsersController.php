@@ -51,7 +51,7 @@ class UsersController extends Controller {
       } 
 
       return $this->dispatcher->forward(array( 
-         'controller' => 'sar', 'action' => 'index' 
+         'controller' => 'home', 'action' => 'index' 
       )); 
       
    }  

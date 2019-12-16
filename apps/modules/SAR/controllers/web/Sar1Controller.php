@@ -8,7 +8,7 @@ use KPL\SAR\Application\SarMasterService;
 use KPL\SAR\Application\SarMasterResponse;
 use Phalcon\Http\Response;
 
-class SARController extends Controller
+class Sar1Controller extends Controller
 {
     public function indexAction()
     {

@@ -14,9 +14,8 @@ class SarSupportService
 
     public function execute(SarSupportRequest $request)
     {
-        $SarAssigment = $this->SarRepository->getAllSarSupport();
-        var_dump($SarAssigment);
-        exit;
+        $SarAssigment = $this->SarRepository->getAllSarSupport($request->Param);
+        
         return new SarSupportResponse($SarAssigment,$this->SarRepository->getTipe());
     }
 }

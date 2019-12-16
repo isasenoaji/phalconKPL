@@ -55,7 +55,7 @@ class SqlSar1Repository implements SarRepository {
         return null;
     }
 
-    public function getAllSarSupport($jurusan=null,$fakultas=null): ?array {
+    public function getAllSarSupport($Param=null): ?array {
         $db = $this->di->getShared('db');
 
         $sql = "SELECT jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode

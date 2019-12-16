@@ -38,7 +38,7 @@ class SqlSar2Repository implements SarRepository {
         if ($result) {
             $SarComponents = [];
             foreach($result as $row){
-                $sar = new Sar1 (
+                $sar = new Sar2 (
                                 $row['id'],
                                 $row['nama_jenjang'],
                                 $row['nama_periode'],
@@ -55,20 +55,29 @@ class SqlSar2Repository implements SarRepository {
         return null;
     }
 
-    public function getAllSarSupport($jurusan=null,$fakultas=null): ?array {
+    public function getAllSarSupport($Param): ?array {
         $db = $this->di->getShared('db');
 
-        $sql = "SELECT jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode
-                FROM sar1,periode,jenjang
-                WHERE periode.id = sar1.id_periode and periode.status = 1";
+        $sql = "SELECT jenjang.nama as nama_jenjang,sar.id,sar.id_fakultas,
+                sar.id_jenjang, sar.id_periode, sar.capaian, 
+                sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
+                FROM sar2 sar,periode,jenjang
+                WHERE periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang AND
+                sar.id_fakultas = (
+                                    SELECT fakultas.id 
+                                    FROM jurusan,fakultas 
+                                    WHERE jurusan.id_fakultas = fakultas.id AND jurusan.id =:id_jurusan
+                                    )
+               ";
 
-        $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC);
-        
-      
+            $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
+                'id_jurusan' => $Param,
+            ]);
+
         if ($result) {
             $SarComponents = [];
             foreach($result as $row){
-                $sar = new Sar1 (
+                $sar = new Sar2 (
                                 $row['id'],
                                 $row['nama_jenjang'],
                                 $row['nama_periode'],

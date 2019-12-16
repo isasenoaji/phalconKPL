@@ -1,4 +1,4 @@
-a:6:{i:0;s:3745:"<!DOCTYPE html>
+a:8:{i:0;s:3745:"<!DOCTYPE html>
 <head>
     <title>SAR</title>
     <link href="<?= $this->url->get('https://phalcon-init.local/asset/css/bootstrap.min.css') ?>" rel="stylesheet">
@@ -55,7 +55,8 @@ a:6:{i:0;s:3745:"<!DOCTYPE html>
 
 </ul>
 </nav>
-      ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:108:"/mnt/g/ProjectWin/KPL-Web/Tugas_Kelompok/phalconKPL/apps/modules/SAR/config/../views/sar/template/index.volt";s:4:"line";i:9;}}i:2;s:5158:"
+      ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:108:"/mnt/g/ProjectWin/KPL-Web/Tugas_Kelompok/phalconKPL/apps/modules/SAR/config/../views/sar/template/index.volt";s:4:"line";i:9;}}i:2;s:7:"
+      ";s:4:"edit";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:108:"/mnt/g/ProjectWin/KPL-Web/Tugas_Kelompok/phalconKPL/apps/modules/SAR/config/../views/sar/template/index.volt";s:4:"line";i:10;}}i:3;s:5158:"
       <div class="footer">
     <div>
         <strong>Copyright</strong> CyberDeveloper.com &copy; 2019
@@ -143,4 +144,4 @@ a:6:{i:0;s:3745:"<!DOCTYPE html>
     <!-- Dual Listbox -->
     <script src="<?= $this->url->get('https://phalcon-init.local/asset/js/plugins/dualListbox/jquery.bootstrap-duallistbox.js') ?>"></script>
 
-";s:9:"addscript";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:108:"/mnt/g/ProjectWin/KPL-Web/Tugas_Kelompok/phalconKPL/apps/modules/SAR/config/../views/sar/template/index.volt";s:4:"line";i:14;}}}
+";s:9:"addscript";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:108:"/mnt/g/ProjectWin/KPL-Web/Tugas_Kelompok/phalconKPL/apps/modules/SAR/config/../views/sar/template/index.volt";s:4:"line";i:15;}}}

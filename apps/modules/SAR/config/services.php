@@ -4,6 +4,10 @@ use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Volt;
 use KPL\SAR\Infrastructure\SqlUserRepository;
 use KPL\SAR\Infrastructure\SqlSar1Repository;
+use KPL\SAR\Infrastructure\SqlSar2Repository;
+use KPL\SAR\Infrastructure\SqlSar3Repository;
+use KPL\SAR\Infrastructure\SqlSar4Repository;
+use KPL\SAR\Infrastructure\SqlSar5Repository;
 use KPL\SAR\Infrastructure\SqlSarListedRepository;
 
 
@@ -32,7 +36,7 @@ $di->set('sql_sars_repository', function($TIPESAR) use ($di) {
         $repo = new SqlSar1Repository($di);
     }
     else if($TIPESAR == 2){
-        $repo = new SqlSar1Repository($di);
+        $repo = new SqlSar2Repository($di);
     }
     else if($TIPESAR ==  3){
         $repo = new SqlSar1Repository($di);

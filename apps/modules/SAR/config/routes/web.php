@@ -14,3 +14,11 @@ $router->add('/kelolasar-1'
     'controller' => 'Sar1',
     'action'     => 'index',
 ]);
+
+$router->add('/testing'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Testing',
+    'action'     => 'index',
+]);

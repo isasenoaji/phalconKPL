@@ -4,13 +4,11 @@ namespace KPL\SAR\Application;
 
 class SarSupportRequest
 {
-    public $tipeSar;
-    public $NIP;
+    public $TipeSar;
 
-    public function __construct($NIP,$jabatan)
+    public function __construct($TipeSar)
     {
-        $this->NIP = $NIP;
-        $this->tipeSar = $jabatan;
+        $this->TipeSar = $TipeSar;
     }
 
 

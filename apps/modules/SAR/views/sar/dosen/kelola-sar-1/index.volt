@@ -1,6 +1,6 @@
 {% extends 'sar/template/index.volt' %}
 {% block navbar %}
-{% include 'sar/template/navbar.volt' %}
+{% include 'sar/warek/template/navbar.volt' %}
 {% endblock %}
 {% block content %}
 

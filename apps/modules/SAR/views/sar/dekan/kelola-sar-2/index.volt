@@ -13,7 +13,7 @@
                 <a href="">Dashboard</a>
             </li>
             <li class="active">
-                <strong>Kelola SAR</strong>
+                <strong>Kelola SAR 2</strong>
             </li>
         </ol>
     </div>
@@ -23,7 +23,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h3>SAR 1</h3>
+                <h3>SAR 2</h3>
                 <div class="text-right">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form">
                     APALAH
@@ -70,6 +70,45 @@
                     </table>
                 </div>
             </div>
+            <div class="ibox-content">
+              <div class="table-responsive">
+                  <table class="table table-striped table-hover" style="font-size: small;">
+                      <thead>
+                          <tr>
+                              <th>No</th>
+                              <th>Jenjang</th>
+                              <th>Sasaran</th>
+                              <th>Capaian</th>
+                              <th>Action</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% set i = 1 %}
+                          {% for sar in SarAssigment %}
+                          <tr>
+                              <td>{{ i }}</td>
+                              <td>{{ sar['idJenjang'] }}</td>
+                              <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
+                              <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
+                              <td>
+                                  <form id="button-edit" method="POST" action="">
+                                      <input type="hidden" name="id" value="">
+                                      <button type="button" class="btn btn-warning btn-xs" 
+                                          data-id = "{{ sar['id'] }}"
+                                          data-jenjang = "{{ sar['idJenjang'] }}"
+                                          data-sasaran = "{{ sar['sasaran'] }}"
+                                          data-capaian = "{{ sar['capaian'] }}"
+                                          data-toggle="modal" data-target="#modal-edit"
+                                          ><span class="fa fa-pencil"></span> Ubah</button>
+                                  </form>
+                              </td>
+                          </tr>
+                              {% set i = i + 1 %}
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
         </div>
     </div>
 </div>

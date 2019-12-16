@@ -15,6 +15,37 @@ $router->add('/kelolasar-1'
     'action'     => 'index',
 ]);
 
+$router->add('/kelolasar-2'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar2',
+    'action'     => 'index',
+]);
+
+$router->add('/kelolasar-3'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar3',
+    'action'     => 'index',
+]);
+$router->add('/kelolasar-4'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar4',
+    'action'     => 'index',
+]);
+
+$router->add('/kelolasar-5'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar5',
+    'action'     => 'index',
+]);
+
 $router->add('/testing'
 	,[
 	'namespace'  => 'KPL\SAR\Controllers\Web',

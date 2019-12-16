@@ -12,6 +12,7 @@ class HomeController extends Controller{
         $ListSar = $this->session->get("ListSar");
 
         $this->view->setVar('TipeSar',$ListSar);
-        $this->view->pick('sar/warek/dashboard/index');
+
+        $this->view->pick('sar/dashboard/index');
     }
 }

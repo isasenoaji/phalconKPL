@@ -59,8 +59,8 @@ class SqlSar1Repository implements SarRepository {
         $db = $this->di->getShared('db');
 
         $sql = "SELECT jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode
-                FROM sar1,periode,jenjang
-                WHERE periode.id = sar1.id_periode and periode.status = 1";
+        FROM sar1,periode,jenjang
+        WHERE periode.id = sar1.id_periode and periode.status = 1 and jenjang.id = sar1.id_jenjang";
 
         $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC);
         

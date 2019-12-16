@@ -9,8 +9,8 @@ class Sar3 extends Sar {
    
 
     public function __construct($id, $jenjang,$periode, $jurusan, $capaian, $sasaran, $pengisi, $IsLocked = false) {
-        $this->idJenjang = $jenjang;
-        $this->idJurusan = $jurusan;
+        $this->jenjang = $jenjang;
+        $this->jurusan = $jurusan;
         parent::__construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked);
     }
 

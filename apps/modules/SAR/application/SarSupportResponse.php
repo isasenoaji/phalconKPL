@@ -6,15 +6,15 @@ use KPL\SAR\domain\models\sar;
 
 class SarSupportResponse
 {
-    public $TIPE;
     public $SarAssigment;
 
-
-    public function __construct(array $SarComponents,$tipe)
+    public function __construct()
     {
-        $this->SarAssigment = $SarComponents;
-        $this->TIPE=$tipe;
+        $this->SarAssigment = array();
+    }
 
+    public function addSarAssigment(array $component){
+        array_push($this->SarAssigment, $component);
     }
 
 }

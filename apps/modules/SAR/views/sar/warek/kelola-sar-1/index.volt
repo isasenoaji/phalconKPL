@@ -48,7 +48,7 @@
                             {% for sar in SarAssigment %}
                             <tr>
                                 <td>{{ i }}</td>
-                                <td>{{ sar['idJenjang'] }}</td>
+                                <td>{{ sar['jenjang'] }}</td>
                                 <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
                                 <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
                                 <td>
@@ -56,7 +56,7 @@
                                         <input type="hidden" name="id" value="">
                                         <button type="button" class="btn btn-warning btn-xs" 
                                             data-id = "{{ sar['id'] }}"
-                                            data-jenjang = "{{ sar['idJenjang'] }}"
+                                            data-jenjang = "{{ sar['jenjang'] }}"
                                             data-sasaran = "{{ sar['sasaran'] }}"
                                             data-capaian = "{{ sar['capaian'] }}"
                                             data-toggle="modal" data-target="#modal-edit"

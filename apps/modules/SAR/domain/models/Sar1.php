@@ -8,7 +8,7 @@ class Sar1 extends Sar {
     
 
     public function __construct($id, $jenjang, $periode, $capaian, $sasaran, $pengisi, $IsLocked = false) {
-        $this->Jenjang = $jenjang;
+        $this->jenjang = $jenjang;
         parent::__construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked);
     }
 
@@ -19,7 +19,7 @@ class Sar1 extends Sar {
                     "sasaran" => $this->sasaran,
                     "capaian" => $this->capaian,
                     "pengisi" => $this->pengisi,
-                    "isLocked" => $this->isLocked
+                    "IsLocked" => $this->IsLocked
         );
     }
 }

@@ -23,7 +23,7 @@ class SqlSar1Repository implements SarRepository {
         return $this->tipe;
     }
 
-    public function getAllSarMaster($nip){
+    public function getAllSarMaster($nip) : ?array{
         $db = $this->di->getShared('db');
 
         $sql = "SELECT sar1.id as id_sar, jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode

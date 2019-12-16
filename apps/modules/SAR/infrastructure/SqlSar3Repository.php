@@ -27,10 +27,13 @@ class SqlSar3Repository implements SarRepository {
         $db = $this->di->getShared('db');
 
             $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode, 
-			                sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
-                    FROM sar3 sar,periode,jenjang
-                    WHERE sar.nip =:nip and periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang";
-                    
+			                sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode,jurusan.nama as jurusan
+                    FROM sar3 sar,periode,jenjang,jurusan
+                    WHERE sar.nip =:nip and periode.id = sar.id_periode and 
+                        periode.status = 1 AND jenjang.id = sar.id_jenjang
+                        and jurusan.id = sar.id_jurusan
+                    ";
+
         $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
             'nip' => $nip,
         ]);
@@ -43,6 +46,7 @@ class SqlSar3Repository implements SarRepository {
                                 $row['id'],
                                 $row['nama_jenjang'],
                                 $row['nama_periode'],
+                                $row['jurusan'],
                                 $row['capaian'],
                                 $row['sasaran'],
                                 $row['nip'],
@@ -59,16 +63,12 @@ class SqlSar3Repository implements SarRepository {
     public function getAllSarSupport($Param): ?array {
         $db = $this->di->getShared('db');
 
-        $sql = "SELECT jenjang.nama as nama_jenjang,sar.id,sar.id_fakultas,
-                sar.id_jenjang, sar.id_periode, sar.capaian, 
-                sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
-                FROM sar2 sar,periode,jenjang
-                WHERE periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang AND
-                sar.id_fakultas = (
-                                    SELECT fakultas.id 
-                                    FROM jurusan,fakultas 
-                                    WHERE jurusan.id_fakultas = fakultas.id AND jurusan.id =:id_jurusan
-                                    )
+        $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode, 
+                        sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode,jurusan.nama as jurusan
+                FROM sar3 sar,periode,jenjang,jurusan
+                WHERE periode.id = sar.id_periode and 
+                      periode.status = 1 AND jenjang.id = sar.id_jenjang
+                      and sar.id_jurusan =:id_jurusan  and jurusan.id = sar.id_jurusan
                ";
 
             $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 

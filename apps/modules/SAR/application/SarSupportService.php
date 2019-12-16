@@ -1,19 +1,22 @@
 <?php
 
 namespace KPL\SAR\Application;
-use KPL\SAR\Domain\Models\SarRepository;
+use KPL\SAR\Domain\Model\SarRepository;
 
 class SarSupportService
 {
-    private $sarRepository;
+    private $SarRepository;
 
-    public function __construct(SarRepository $sarRepository)
+    public function __construct(SarRepository $SarRepository)
     {
-        $this->sarRepository = $sarRepository;
+        $this->SarRepository = $SarRepository;
     }
 
-    public function execute(SarRequest $request)
+    public function execute(SarSupportRequest $request)
     {
-    
+        $SarAssigment = $this->SarRepository->getAllSarSupport();
+        var_dump($SarAssigment);
+        exit;
+        return new SarSupportResponse($SarAssigment,$this->SarRepository->getTipe());
     }
 }

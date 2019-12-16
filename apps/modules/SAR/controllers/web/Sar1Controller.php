@@ -15,17 +15,17 @@ class Sar1Controller extends Controller
         $TIPESAR = 1;
         $NIP = $this->session->get("auth")['nip'];
            
-        $RequestSar = new SarMasterRequest($NIP,$TIPESAR);
+        $RequestSarM = new SarMasterRequest($NIP,$TIPESAR);
         $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
-        $ServiceSar = new SarMasterService($SarRepository);
-        $ResponseSar = $ServiceSar->execute($RequestSar);
+        $ServiceSarM = new SarMasterService($SarRepository);
+        $ResponseSarM = $ServiceSarM->execute($RequestSarM);
         
-        $SarAssigment = $ResponseSar->SarAssigment);
+        $Sar1Assigment = $ResponseSarM->SarAssigment;
         $ListSar = $this->session->get("ListSar");
-
-        $this->view->setVar('SarAssigment',$SarAssigment);
-        $this->view->setVar('TipeSar',$ListSar);
-        $this->view->pick('sar/warek/kelolasar/index');
+        var_dump($Sar1Assigment);
+        //$this->view->setVar('SarAssigment',$Sar1Assigment);
+        //$this->view->setVar('TipeSar',$ListSar);
+        //$this->view->pick('sar/warek/kelolasar/index');
     }
 
     // public function get

@@ -1,19 +1,19 @@
 {% extends 'sar/template/index.volt' %}
 {% block navbar %}
-{% include 'sar/warek/template/navbar.volt' %}
+{% include 'sar/template/navbar.volt' %}
 {% endblock %}
 {% block content %}
 
 <div id="wrapper">    
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Kelola SAR</h2>
+        <h2>Kelola SAR 5</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="">Dashboard</a>
             </li>
             <li class="active">
-                <strong>Kelola SAR</strong>
+                <strong>Kelola SAR 5</strong>
             </li>
         </ol>
     </div>
@@ -23,12 +23,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h3>SAR 1</h3>
-                <div class="text-right">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form">
-                    APALAH
-                    </button>
-                </div>
+                <h3><strong><center>Mata Kuliah</center></strong></h3>
             </div>
             <div class="ibox-content">
           		{{ flashSession.output() }}
@@ -36,11 +31,19 @@
                     <table class="table table-striped table-hover" style="font-size: small;">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Jenjang</th>
+                                <th rowspan="2">No</th>
+                                <th rowspan="2">Mata Kuliah</th>
+                                <th rowspan="2">Kelas</th>
+                                <th rowspan="2">Jurusan</th>
+                                <th colspan="3">Rumpun Mata Kuliah</th>
+                                <th rowspan="2">Sasaran</th>
+                                <th rowspan="2">Capaian</th>
+                                <th rowspan="2">Action</th>
+                                <tr>
+                                <th>Nama RMK</th>
                                 <th>Sasaran</th>
                                 <th>Capaian</th>
-                                <th>Action</th>
+                                </tr>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,7 +77,7 @@
     </div>
 </div>
 </div>
-{% include 'sar/warek/kelola-sar-1/ModalEdit.volt' %}
+{% include 'sar/dosen/kelola-sar-5/ModalEdit.volt' %}
 {% endblock %}
 
 {% block addscript %}

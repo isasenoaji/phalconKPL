@@ -1,21 +1,21 @@
 <?php
 
 namespace KPL\SAR\Application;
-use KPL\SAR\Domain\Models\SarRepository;
+use KPL\SAR\Domain\Model\SarRepository;
 
 class SarMasterService
 {
-    private $sarRepository;
+    private $SarRepository;
 
-    public function __construct(SarRepository $sarRepository)
+    public function __construct(SarRepository $SarRepository)
     {
-        $this->sarRepository = $sarRepository;
+        $this->SarRepository = $SarRepository;
     }
 
     public function execute(SarMasterRequest $request)
     {
-        $SarAssigment = $this->sarRepository->getAllSarMaster($request->NIP);
-        //echo $this->sarRepository->getTipe();exit;
-        return new SARMasterResponse($SarAssigment,$this->sarRepository->getTipe());
+        $SarAssigment = $this->SarRepository->getAllSarMaster($request->NIP);
+        
+        return new SARMasterResponse($SarAssigment,$this->SarRepository->getTipe());
     }
 }

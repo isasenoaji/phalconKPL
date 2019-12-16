@@ -12,13 +12,19 @@ class Sar1Controller extends Controller
 {
     public function indexAction()
     {
+        $TIPESAR = 1;
         $NIP = $this->session->get("auth")['nip'];
-           $requestSar = new SarMasterRequest($NIP,$jabatan);
-           $sarRepository = $this->di->get('sql_sars_repository',array($jabatan));
-           $serviceSar = new SarMasterService($sarRepository);
-           $responseSar = $serviceSar->execute($requestSar);
+           
+        $RequestSar = new SarMasterRequest($NIP,$TIPESAR);
+        $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
+        $ServiceSar = new SarMasterService($SarRepository);
+        $ResponseSar = $ServiceSar->execute($RequestSar);
         
-        $this->view->setVar('tipeSar',$jabatanCollection);
+        $SarAssigment = $ResponseSar->SarAssigment);
+        $ListSar = $this->session->get("ListSar");
+
+        $this->view->setVar('SarAssigment',$SarAssigment);
+        $this->view->setVar('TipeSar',$ListSar);
         $this->view->pick('sar/warek/kelolasar/index');
     }
 

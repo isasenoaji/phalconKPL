@@ -25,13 +25,22 @@ $di->setShared('sql_users_repository', function() use ($di) {
     return $repo;
 });
 
-$di->setShared('sql_sars_repository', function($jabatan) use ($di) {
-    $tipeSar = $jabatan-1;
+$di->set('sql_sars_repository', function($jabatan) use ($di) {
+    // $tipeSar = $jabatan-1;
     // echo $tipeSar;
-    if($tipeSar==1){
+    if($jabatan == "Wakil Rektor"){
         $repo = new SqlSar1Repository($di);
     }
-    else if($tipeSar==5){
+    else if($jabatan == "Dekan Fakultas"){
+        $repo = new SqlSar1Repository($di);
+    }
+    else if($jabatan == "Kepala Jurusan"){
+        $repo = new SqlSar1Repository($di);
+    }
+    else if($jabatan == "Ketua RMK"){
+        $repo = new SqlSar1Repository($di);
+    }
+    else if($jabatan == "Dosen"){
         $repo = new SqlSar1Repository($di);
     }
     

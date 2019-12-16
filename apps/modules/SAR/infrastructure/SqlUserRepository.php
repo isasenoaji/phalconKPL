@@ -35,16 +35,16 @@ class SqlUserRepository implements UserRepository
                 $result['id_jurusan'],
                 $result['password']
             );
-            $sql = "SELECT id_jabatan, id_user
-                FROM users_jabatan 
-                WHERE id_user = :nip";
+            $sql = "SELECT u.id_jabatan, u.id_user, j.nama as nama_jabatan
+                FROM users_jabatan as u, jabatan as j
+                WHERE u.id_user = :nip and j.id = u.id_jabatan";
 
             $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
                 'nip' => $nip
             ]);
             
             foreach($result as $row) {
-                $user->addJabatan($row['id_jabatan']);
+                $user->addJabatan($row['nama_jabatan']);
             }
 
             return $user;

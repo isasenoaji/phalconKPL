@@ -43,14 +43,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for sar in sarCollection  %}
-                                <tr>
-                                    <td>1</td>
-                                    <td>{{ sar. }}</td>
-                                    <td>{{ sar['capaian'] }}</td>
-                                    <td>1</td>
-                                </tr>
-                            {% endfor %}
+                            
                         </tbody>
                     </table>
                 </div>

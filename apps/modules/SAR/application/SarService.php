@@ -7,8 +7,7 @@ class SarService
 {
     private $sarRepository;
 
-    public function __construct(
-        SarRepository $sarRepository)
+    public function __construct(SarRepository $sarRepository)
     {
         $this->sarRepository = $sarRepository;
     }

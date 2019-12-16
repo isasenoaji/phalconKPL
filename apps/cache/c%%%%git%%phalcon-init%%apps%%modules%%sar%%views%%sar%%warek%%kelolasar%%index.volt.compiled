@@ -53,12 +53,32 @@
                 </ul>
             </div>
             <div class="logo-element">
-                CyJarK
+                SAR
             </div>
         </li>
-            <li id="sidebar-sar">
-                <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR</span></a>
-            </li>
+            <?php foreach ($tipeSar as $sarTipe) { ?>
+                <?php if ($sarTipe === 'Wakil Rektor') { ?>
+                <li id="sidebar-sar">
+                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 1</span></a>
+                </li>
+                <?php } elseif ($sarTipe === 'Dekan Fakultas') { ?>
+                <li id="sidebar-sar">
+                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 2</span></a>
+                </li>
+                <?php } elseif ($sarTipe === 'Ketua Jurusan') { ?>
+                <li id="sidebar-sar">
+                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 3</span></a>
+                </li>
+                <?php } elseif ($sarTipe === 'Ketua RMK') { ?>
+                <li id="sidebar-sar">
+                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 4</span></a>
+                </li>
+                <?php } elseif ($sarTipe === 'Dosen') { ?>
+                <li id="sidebar-sar">
+                    <a href=""><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR</span></a>
+                </li>
+                <?php } ?>
+            <?php } ?>
             <li id="sidebar-laporan">
                 <a href=""><i class="fa fa-book"></i> <span class="nav-label">Laporan SAR</span></a>
             </li>
@@ -130,14 +150,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($sarCollection as $sar) { ?>
-                                <tr>
-                                    <td>1</td>
-                                    <td><?= $sar['id_periode'] ?></td>
-                                    <td><?= $sar['capaian'] ?></td>
-                                    <td>1</td>
-                                </tr>
-                            <?php } ?>
+                            
                         </tbody>
                     </table>
                 </div>

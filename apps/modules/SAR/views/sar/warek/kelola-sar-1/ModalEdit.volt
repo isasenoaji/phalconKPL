@@ -11,7 +11,7 @@
                 <div class="form-group row">
                     <label for="jenjang" class="col-sm-3 control-label required">Jenjang</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" required name="jenjang" id="edt_jenjang">
+                      <input type="text" class="form-control" required name="jenjang" id="edt_jenjang" disabled>
                       <input type="hidden" class="form-control" required name="id" id="id">
                     </div>
                 </div>

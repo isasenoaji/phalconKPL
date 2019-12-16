@@ -55,9 +55,10 @@
                                     <form id="button-edit" method="POST" action="">
                                         <input type="hidden" name="id" value="">
                                         <button type="button" class="btn btn-warning btn-xs" 
-                                            data-id = ""
-                                            data-sasaran = ""
-                                            data-capaian = ""
+                                            data-id = "{{ sar['id'] }}"
+                                            data-jenjang = "{{ sar['idJenjang'] }}"
+                                            data-sasaran = "{{ sar['sasaran'] }}"
+                                            data-capaian = "{{ sar['capaian'] }}"
                                             data-toggle="modal" data-target="#modal-edit"
                                             ><span class="fa fa-pencil"></span> Ubah</button>
                                     </form>
@@ -118,14 +119,20 @@
 
     </script>
     <script>
-            $('#detailku').on('show.bs.modal', function (event) {
+            $('#modal-edit').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 
-                var id = button.data('myid');
+                var id = button.data('id');
+                var jenjang = button.data('jenjang');
+                var sasaran = button.data('sasaran');
+                var capaian = button.data('capaian');
 
                 var modal = $(this);
 
                 modal.find('.modal-body #id').val(id);
+                modal.find('.modal-body #edt_jenjang').val(jenjang);
+                modal.find('.modal-body #edt_sasaran').val(sasaran);
+                modal.find('.modal-body #edt_capaian').val(capaian);
             });
 
     </script>

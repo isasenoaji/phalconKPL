@@ -4,13 +4,14 @@ namespace KPL\SAR\Domain\Model;
 
 
 class Sar3 extends Sar {
-    private $idJenjang;
-    private $idJurusan;
+    private $jenjang;
+    private $jurusan;
+   
 
-    public function __construct($id, $idJenjang, $idJurusan, $capaian, $sasaran, $pengisi, $isLocked = false) {
-        $this->idJenjang = $idJenjang;
-        $this->idJurusan = $idJurusan;
-        parent::__construct($id, $capaian, $sasaran, $pengisi, $isLocked);
+    public function __construct($id, $jenjang,$periode, $jurusan, $capaian, $sasaran, $pengisi, $IsLocked = false) {
+        $this->idJenjang = $jenjang;
+        $this->idJurusan = $jurusan;
+        parent::__construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked);
     }
 
     public function idJenjang() {

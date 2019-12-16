@@ -6,17 +6,19 @@ namespace KPL\SAR\Domain\Model;
 
 class Sar {
     public $id;
+    public $periode;
     public $capaian;
     public $sasaran;
     public $pengisi;
-    public $isLocked;
+    public $IsLocked;
 
-    protected function __construct($id, $capaian, $sasaran, $pengisi, $isLocked) {
+    protected function __construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked) {
         $this->id = $id;
+        $this->periode = $periode;
         $this->capaian = $capaian;
         $this->sasaran = $sasaran;
         $this->pengisi = $pengisi;
-        $this->isLocked = $isLocked;
+        $this->IsLocked = $IsLocked;
     }
 
     public function id() {

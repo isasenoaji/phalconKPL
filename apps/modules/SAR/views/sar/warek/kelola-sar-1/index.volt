@@ -23,7 +23,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h3>SAR</h3>
+                <h3>SAR 1</h3>
                 <div class="text-right">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form">
                     APALAH
@@ -40,10 +40,31 @@
                                 <th>Jenjang</th>
                                 <th>Sasaran</th>
                                 <th>Capaian</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            {% set i = 1 %}
+                            {% for sar in SarAssigment %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ sar['idJenjang'] }}</td>
+                                <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
+                                <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
+                                <td>
+                                    <form id="button-edit" method="POST" action="">
+                                        <input type="hidden" name="id" value="">
+                                        <button type="button" class="btn btn-warning btn-xs" 
+                                            data-id = ""
+                                            data-sasaran = ""
+                                            data-capaian = ""
+                                            data-toggle="modal" data-target="#modal-edit"
+                                            ><span class="fa fa-pencil"></span> Ubah</button>
+                                    </form>
+                                </td>
+                            </tr>
+                                {% set i = i + 1 %}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -52,7 +73,7 @@
     </div>
 </div>
 </div>
-
+{% include 'sar/warek/kelola-sar-1/ModalEdit.volt' %}
 {% endblock %}
 
 {% block addscript %}

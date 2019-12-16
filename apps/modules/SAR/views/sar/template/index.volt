@@ -7,6 +7,7 @@
 	  {% block navbar %} {% endblock %}
       {% include 'sar/template/topnavbar.volt' %}
       {% block content %} {% endblock %}
+      {% block edit %} {% endblock %}
       {% include 'sar/template/footer.volt' %}
 </body>
     

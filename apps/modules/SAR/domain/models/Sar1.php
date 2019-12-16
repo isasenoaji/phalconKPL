@@ -20,4 +20,15 @@ class Sar1 extends Sar {
     public function idPeriode() {
         return $this->idPeriode;
     }
+
+    public function generateToArray(){
+        return array("id" => $this->id,
+                    "idJenjang" => $this->idJenjang,
+                    "idPeriode" => $this->idPeriode,
+                    "sasaran" => $this->sasaran,
+                    "capaian" => $this->capaian,
+                    "pengisi" => $this->pengisi,
+                    "isLocked" => $this->isLocked
+        );
+    }
 }

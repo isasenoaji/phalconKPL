@@ -20,12 +20,12 @@ class Sar1Controller extends Controller
         $ServiceSar = new SarMasterService($SarRepository);
         $ResponseSar = $ServiceSar->execute($RequestSar);
         
-        $SarAssigment = $ResponseSar->SarAssigment);
+        $SarAssigment = $ResponseSar->SarAssigment;
         $ListSar = $this->session->get("ListSar");
 
         $this->view->setVar('SarAssigment',$SarAssigment);
         $this->view->setVar('TipeSar',$ListSar);
-        $this->view->pick('sar/warek/kelolasar/index');
+        $this->view->pick('sar/warek/kelola-sar-1/index');
     }
 
     // public function get

@@ -24,7 +24,7 @@
             <?php foreach ($TipeSar as $tipe) { ?>
                 <?php if ($tipe === 1) { ?>
                 <li id="sidebar-sar">
-                    <a href="/kelolasar1"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 1</span></a>
+                    <a href="/kelolasar-1"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 1</span></a>
                 </li>
                 <?php } elseif ($tipe === 2) { ?>
                 <li id="sidebar-sar">

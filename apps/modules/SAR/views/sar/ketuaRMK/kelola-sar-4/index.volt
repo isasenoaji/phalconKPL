@@ -62,7 +62,6 @@
                                             data-id = "{{ sar['id'] }}"
                                             data-rmk = "{{ sar['rmk'] }}"
                                             data-sasaran = "{{ sar['sasaran'] }}"
-                                            data-capaian = "{{ sar['capaian'] }}"
                                             data-toggle="modal" data-target="#modal-edit"
                                             ><span class="fa fa-pencil"></span> Ubah</button>
                                     </form>
@@ -130,14 +129,12 @@
                 var id = button.data('id');
                 var rmk = button.data('rmk');
                 var sasaran = button.data('sasaran');
-                var capaian = button.data('capaian');
 
                 var modal = $(this);
 
                 modal.find('.modal-body #id').val(id);
                 modal.find('.modal-body #edt_rmk').val(rmk);
                 modal.find('.modal-body #edt_sasaran').val(sasaran);
-                modal.find('.modal-body #edt_capaian').val(capaian);
             });
 
     </script>

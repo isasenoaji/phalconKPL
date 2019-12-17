@@ -7,6 +7,8 @@ use KPL\SAR\Application\SarMasterRequest;
 use KPL\SAR\Application\SarMasterService;
 use KPL\SAR\Application\SarSupportRequest;
 use KPL\SAR\Application\SarSupportService;
+use KPL\SAR\Application\SetSasaranSarService;
+use KPL\SAR\Application\SetSasaranSarRequest;
 use Phalcon\Http\Response;
 
 class Sar2Controller extends Controller
@@ -38,7 +40,25 @@ class Sar2Controller extends Controller
         $this->view->setVar('TipeSar',$ListSar);
         $this->view->pick('sar/dekan/kelola-sar-2/index');
     }
-
-    // public function get
+    public function setSarAction()
+    {
+        if ($this->request->isPost()) {
+            $TIPESAR = 2;
+            $NIP = $this->session->get("auth")['nip'];
+            $idSar = $this->request->getPost("id");
+            $sasaran = $this->request->getPost("sasaran");
+            $RequestSetSar = new SetSasaranSarRequest($TIPESAR,$NIP,$idSar,$sasaran);
+            $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
+            $SetSasaranService = new SetSasaranSarService($SarRepository);
+            $ResponsSetSar = $SetSasaranService->execute($RequestSetSar);
+            $this->flashSession->success("Sukses mengisi sasaran .."); 
+            return $this->response->redirect('/kelolasar-2');
+        }
+        else{
+            $this->flashSession->error("Incorrect Method"); 
+            return $this->response->redirect('/kelolasar-2');
+        }
+        
+    }
 
 }

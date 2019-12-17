@@ -1,6 +1,7 @@
 {
     "require-dev": {
-        "phalcon/ide-stubs": "*"
+        "phalcon/ide-stubs": "*",
+        "phpunit/phpunit": "^8"
     },
     "require": {
         "vlucas/phpdotenv": "^3.3"

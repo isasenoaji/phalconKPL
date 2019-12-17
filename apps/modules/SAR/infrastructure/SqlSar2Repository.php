@@ -13,10 +13,6 @@ class SqlSar2Repository implements SarRepository {
         $this->di = $di;
     }
 
-    public function save(Sar $sar) {
-        // TODO: Implement save() method.
-    }
-
     public function getTipe(){
         return $this->tipe;
     }
@@ -24,10 +20,11 @@ class SqlSar2Repository implements SarRepository {
     public function getAllSarMaster($nip): ?array {
         $db = $this->di->getShared('db');
 
-            $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode,sar.id_jurusan,
-                        sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
-                    FROM sar3 sar,periode,jenjang,jurusan
-                    WHERE sar.nip =:nip and periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang";
+            $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode,fakultas.nama AS nama_fakultas,
+                            sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
+                    FROM sar2 sar,periode,jenjang,fakultas
+                     WHERE sar.nip =:nip and periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang
+                    AND fakultas.id = sar.id_fakultas";
                  
 
         $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
@@ -42,6 +39,7 @@ class SqlSar2Repository implements SarRepository {
                                 $row['id'],
                                 $row['nama_jenjang'],
                                 $row['nama_periode'],
+                                $row['nama_fakultas'],
                                 $row['capaian'],
                                 $row['sasaran'],
                                 $row['nip'],
@@ -60,7 +58,8 @@ class SqlSar2Repository implements SarRepository {
 
         $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode,sar.id_jurusan, sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode ,jurusan.nama as jurusan
                 FROM sar3 sar,periode,jenjang, jurusan
-                WHERE sar.id_jurusan=2 and periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang and jurusan.id = sar.id_jurusan;";
+                WHERE sar.id_jurusan=2 and periode.id = sar.id_periode and periode.status = 1 
+                AND jenjang.id = sar.id_jenjang and jurusan.id = sar.id_jurusan;";
 
             $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
                 'id_jurusan' => $Param,
@@ -85,6 +84,43 @@ class SqlSar2Repository implements SarRepository {
         }
 
         return null;
+    }
+
+    public function update($nip,$idSar,$sasaran)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar2 SET sasaran=:sasaran
+                WHERE id=:idSar AND nip=:nip and locked=0";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+            'sasaran' => $sasaran,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
+    }
+
+    public function lock($nip,$idSar)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar2 SET locked=1
+                WHERE id=:idSar AND nip=:nip";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
     }
 
 }

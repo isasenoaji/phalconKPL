@@ -17,12 +17,14 @@ class Sar2Controller extends Controller
     {
         $TIPESAR = 2;
         $NIP = $this->session->get("auth")['nip'];
-           
+        
+        //process fakultas
         $RequestSarM = new SarMasterRequest($NIP,$TIPESAR);
         $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
         $ServiceSarM = new SarMasterService($SarRepository);
         $ResponseSarM = $ServiceSarM->execute($RequestSarM);
 
+        //process institut
         $jurusan = $this->session->get("auth")['id_jurusan'];
         $RequestSarS = new SarSupportRequest($NIP,$jurusan);
         $SarRepository = $this->di->get('sql_sars_repository',array(1));

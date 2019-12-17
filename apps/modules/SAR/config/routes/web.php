@@ -58,7 +58,7 @@ $router->add('/kelolasar-2/set'
 	,[
 	'namespace'  => 'KPL\SAR\Controllers\Web',
 	'module' =>'SAR',
-    'controller' => 'Sar1',
+    'controller' => 'Sar2',
     'action'     => 'setSar',
 ]);
 
@@ -66,7 +66,7 @@ $router->add('/kelolasar-3/set'
 	,[
 	'namespace'  => 'KPL\SAR\Controllers\Web',
 	'module' =>'SAR',
-    'controller' => 'Sar1',
+    'controller' => 'Sar3',
     'action'     => 'setSar',
 ]);
 
@@ -74,7 +74,7 @@ $router->add('/kelolasar-4/set'
 	,[
 	'namespace'  => 'KPL\SAR\Controllers\Web',
 	'module' =>'SAR',
-    'controller' => 'Sar1',
+    'controller' => 'Sar4',
     'action'     => 'setSar',
 ]);
 
@@ -82,7 +82,7 @@ $router->add('/kelolasar-5/set'
 	,[
 	'namespace'  => 'KPL\SAR\Controllers\Web',
 	'module' =>'SAR',
-    'controller' => 'Sar1',
+    'controller' => 'Sar5',
     'action'     => 'setSar',
 ]);
 

@@ -3,7 +3,7 @@
 namespace KPL\SAR\Application;
 
 
-class SetLockSarResponse
+class SetSasaranSarResponse
 {
     public $status;
 

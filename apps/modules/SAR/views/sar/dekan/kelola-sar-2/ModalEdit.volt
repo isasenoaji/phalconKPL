@@ -18,7 +18,7 @@
                 <div class="form-group row">
                     <label for="sasaran" class="col-sm-3 control-label required">Sasaran</label>
                     <div class="col-sm-8">
-                      <input type="number" class="form-control" required name="sasaran"  id="edt_sasaran">
+                      <input type="number" step="0.01" class="form-control" required name="sasaran"  id="edt_sasaran">
                     </div>
                 </div>
               </div>

@@ -6,7 +6,7 @@ use KPL\SAR\Domain\Model\SarRepository;
 use Phalcon\DiInterface;
 use KPL\SAR\Domain\Model\Sar5;
 
-class SqlSar4Repository implements SarRepository {
+class SqlSar5Repository implements SarRepository {
     protected $di;
     protected $tipe;
 

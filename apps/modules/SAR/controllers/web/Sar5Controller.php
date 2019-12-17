@@ -14,7 +14,15 @@ class Sar5Controller extends Controller
     {
         $NIP = $this->session->get("auth")['nip'];
         $ListSar = $this->session->get("ListSar");
+        $TIPESAR = 5;
 
+        $RequestSar = new SarMasterRequest($NIP,$TIPESAR);
+        $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
+        $ServiceSar = new SarMasterService($SarRepository);
+        $ResponseSar = $ServiceSar->execute($RequestSar);
+        
+        $SarAssigment = $ResponseSar->SarAssigment;
+        $this->view->setVar('SarAssigment',$SarAssigment);
         $this->view->setVar('TipeSar',$ListSar);
         $this->view->pick('sar/dosen/kelola-sar-5/index');
     }

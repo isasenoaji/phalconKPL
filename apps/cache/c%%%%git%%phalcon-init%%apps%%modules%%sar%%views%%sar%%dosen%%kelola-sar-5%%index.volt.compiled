@@ -148,7 +148,7 @@
                                 <th rowspan="2">Mata Kuliah</th>
                                 <th rowspan="2">Kelas</th>
                                 <th rowspan="2">Jurusan</th>
-                                <th colspan="3">Rumpun Mata Kuliah</th>
+                                <th colspan="3"><center>Rumpun Mata Kuliah</center></th>
                                 <th rowspan="2">Sasaran</th>
                                 <th rowspan="2">Capaian</th>
                                 <th rowspan="2">Action</th>
@@ -164,21 +164,16 @@
                             <?php foreach ($SarAssigment as $sar) { ?>
                             <tr>
                                 <td><?= $i ?></td>
-                                <td><?= $sar['idJenjang'] ?></td>
+                                <td><?= $sar['MkKelas'] ?></td>
+                                <td><?= $sar['kelas'] ?></td>
+                                <td><?= $sar['jenjang'] ?> - <?= $sar['jurusan'] ?> </td>
+                                <td><?= $sar['rmk'] ?></td>
+                                <td><?= ($sar['sasaran_rmk'] == 0 ? '-' : $sar['sasaran_rmk']) ?></td>
+                                <td><?= ($sar['capaian_rmk'] == 0 ? '-' : $sar['capaian_rmk']) ?></td>
+                            
                                 <td><?= ($sar['sasaran'] == 0 ? '-' : $sar['sasaran']) ?></td>
                                 <td><?= ($sar['capaian'] == 0 ? '-' : $sar['capaian']) ?></td>
-                                <td>
-                                    <form id="button-edit" method="POST" action="">
-                                        <input type="hidden" name="id" value="">
-                                        <button type="button" class="btn btn-warning btn-xs" 
-                                            data-id = "<?= $sar['id'] ?>"
-                                            data-jenjang = "<?= $sar['idJenjang'] ?>"
-                                            data-sasaran = "<?= $sar['sasaran'] ?>"
-                                            data-capaian = "<?= $sar['capaian'] ?>"
-                                            data-toggle="modal" data-target="#modal-edit"
-                                            ><span class="fa fa-pencil"></span> Ubah</button>
-                                    </form>
-                                </td>
+                                <td>3</td>
                             </tr>
                                 <?php $i = $i + 1; ?>
                             <?php } ?>

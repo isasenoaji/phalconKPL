@@ -14,11 +14,6 @@ class SqlSar5Repository implements SarRepository {
         $this->di = $di;
         $this->tipe = 1;
     }
-
-    public function save(Sar $sar) {
-        // TODO: Implement save() method.
-    }
-
     public function getTipe(){
         return $this->tipe;
     }
@@ -74,44 +69,45 @@ class SqlSar5Repository implements SarRepository {
 
         return null;
     }
-
     public function getAllSarSupport($Param): ?array {
-        $db = $this->di->getShared('db');
-
-        $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode, 
-                        sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode,jurusan.nama as jurusan
-                FROM sar3 sar,periode,jenjang,jurusan
-                WHERE periode.id = sar.id_periode and 
-                      periode.status = 1 AND jenjang.id = sar.id_jenjang
-                      and sar.id_jurusan =:id_jurusan  and jurusan.id = sar.id_jurusan
-               ";
-
-            $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
-                'id_jurusan' => $Param,
-            ]);
-
-        if ($result) {
-            $SarComponents = [];
-            foreach($result as $row){
-                $sar = new Sar4 (
-                                $row['id'],
-                                $row['nama_periode'],
-                                $row['nama_jenjang'],
-                                $row['nama_rmk'],
-                                $row['sasaran'],
-                                $row['capaian'],
-                                $row['nama_jurusan'],
-                                $row['sasaran_jurusan'],
-                                $row['capaian_jurusan'],
-                                $row['nip'],
-                                $row['locked']
-                );
-                array_push($SarComponents,$sar);    
-            }
-            return $SarComponents;
-        }
-
         return null;
+    }
+
+    public function update($nip,$idSar,$sasaran)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar5 SET sasaran=:sasaran
+                WHERE id=:idSar AND nip=:nip and locked=0";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+            'sasaran' => $sasaran,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
+    }
+
+    public function lock($nip,$idSar)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar5 SET locked=1
+                WHERE id=:idSar AND nip=:nip";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
     }
 
 }

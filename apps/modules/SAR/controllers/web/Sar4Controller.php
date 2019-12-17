@@ -32,7 +32,7 @@ class Sar4Controller extends Controller
     public function setSarAction()
     {
         if ($this->request->isPost()) {
-            $TIPESAR = 2;
+            $TIPESAR = 4;
             $NIP = $this->session->get("auth")['nip'];
             $idSar = $this->request->getPost("id");
             $sasaran = $this->request->getPost("sasaran");

@@ -29,13 +29,13 @@ class Sar3Controller extends Controller
         $SarRepositoryS1 = $this->di->get('sql_sars_repository',array(2));
         $ServiceSarS1 = new SarSupportService($SarRepositoryS1);
         $ResponseSarS1 = $ServiceSarS1->execute($RequestSarS1);
+        
 
         //process institut sar 3
         $RequestSarS2 = new SarSupportRequest(1,null);
         $SarRepositoryS2 = $this->di->get('sql_sars_repository',array(1));
         $ServiceSarS2 = new SarSupportService($SarRepositoryS2);
         $ResponseSarS2 = $ServiceSarS2->execute($RequestSarS2);
-        
     
         $SarAssigmentM = $ResponseSarM->SarAssigment;
         $SarAssigmentS1 = $ResponseSarS1->SarAssigment;
@@ -53,14 +53,16 @@ class Sar3Controller extends Controller
     public function setSarAction()
     {
         if ($this->request->isPost()) {
-            $TIPESAR = 2;
+            $TIPESAR = 3;
             $NIP = $this->session->get("auth")['nip'];
             $idSar = $this->request->getPost("id");
             $sasaran = $this->request->getPost("sasaran");
+
             $RequestSetSar = new SetSasaranSarRequest($TIPESAR,$NIP,$idSar,$sasaran);
             $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
             $SetSasaranService = new SetSasaranSarService($SarRepository);
             $ResponsSetSar = $SetSasaranService->execute($RequestSetSar);
+
             $this->flashSession->success("Sukses mengisi sasaran .."); 
             return $this->response->redirect('/kelolasar-3');
         }

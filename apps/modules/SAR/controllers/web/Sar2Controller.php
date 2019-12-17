@@ -41,7 +41,7 @@ class Sar2Controller extends Controller
     
         $SarAssigmentM = $ResponseSarM->SarAssigment;
         $SarAssigmentS = $ResponseSarS->SarAssigment;
-        // var_dump($SarAssigmentS);exit;
+        
         $ListSar = $this->session->get("ListSar");
 
         $this->view->setVar('SarAssigmentM',$SarAssigmentM);

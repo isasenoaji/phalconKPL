@@ -21,14 +21,15 @@ class Sar4Controller extends Controller
         } 
         $TIPESAR = 4;
         $NIP = $this->session->get("auth")['nip'];
-           
+        
+        //process sar 4 > ketua RMK
         $RequestSar = new SarMasterRequest($NIP,$TIPESAR);
         $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
         $ServiceSar = new SarMasterService($SarRepository);
         $ResponseSar = $ServiceSar->execute($RequestSar);
         
         $SarAssigment = $ResponseSar->SarAssigment;
-        // // var_dump($SarAssigment);exit;
+
         $ListSar = $this->session->get("ListSar");
 
         $this->view->setVar('SarAssigment',$SarAssigment);

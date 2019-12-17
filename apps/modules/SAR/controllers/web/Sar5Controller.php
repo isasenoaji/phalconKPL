@@ -23,6 +23,7 @@ class Sar5Controller extends Controller
         $ListSar = $this->session->get("ListSar");
         $TIPESAR = 5;
 
+        //process sar 5 > dosen MK
         $RequestSar = new SarMasterRequest($NIP,$TIPESAR);
         $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
         $ServiceSar = new SarMasterService($SarRepository);

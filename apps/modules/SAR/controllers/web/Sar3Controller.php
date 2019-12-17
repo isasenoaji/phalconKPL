@@ -44,10 +44,11 @@ class Sar3Controller extends Controller
         $ServiceSarS2 = new SarSupportService($SarRepositoryS2);
         $ResponseSarS2 = $ServiceSarS2->execute($RequestSarS2);
     
+        // point to object of array
         $SarAssigmentM = $ResponseSarM->SarAssigment;
         $SarAssigmentS1 = $ResponseSarS1->SarAssigment;
         $SarAssigmentS2 = $ResponseSarS2->SarAssigment;
-        // var_dump($SarAssigmentM);exit;
+        
         $ListSar = $this->session->get("ListSar");
 
         $this->view->setVar('SarAssigmentM',$SarAssigmentM);

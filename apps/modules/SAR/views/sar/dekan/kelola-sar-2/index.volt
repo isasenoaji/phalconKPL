@@ -80,15 +80,22 @@
                               <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
                               <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
                               <td>
-                                  <form id="button-edit" method="POST" action="">
-                                      <input type="hidden" name="id" value="">
-                                      <button type="button" class="btn btn-warning btn-xs" 
-                                          data-id = "{{ sar['id'] }}"
-                                          data-jenjang = "{{ sar['jenjang'] }}"
-                                          data-sasaran = "{{ sar['sasaran'] }}"
-                                          data-toggle="modal" data-target="#modal-edit"
-                                          ><span class="fa fa-pencil"></span> Ubah</button>
-                                  </form>
+                                  {% if sar['IsLocked'] == 0 %}
+                                    <button type="button" class="btn btn-warning btn-xs" 
+                                    data-id = "{{ sar['id'] }}"
+                                    data-jenjang = "{{ sar['jenjang'] }}"
+                                    data-sasaran = "{{ sar['sasaran'] }}"
+                                    data-toggle="modal" data-target="#modal-edit"
+                                    ><span class="fa fa-pencil"></span> Ubah</button>
+
+                                    <button type="button" class="btn btn-danger btn-xs lock-button" 
+                                    data-id = "{{ sar['id'] }}"
+                                    data-locked = "{{ sar['IsLocked'] }}"
+                                    data-jenjang = "{{ sar['jenjang'] }}"
+                                    ><span class="fa fa-unlock"></span> Lock</button>
+                                    {% else %}
+                                        <label class="label label-primary"><i class="fa fa-lock"></i> Terkunci</label>
+                                    {% endif %}
                               </td>
                           </tr>
                               {% set i = i + 1 %}
@@ -101,6 +108,9 @@
     </div>
 </div>
 </div>
+<form id="lock-form" method="post" action="/kelolasar-2/lock" style="display: none;">
+    <input name="id" type="text" id="lock-id" value="">
+</form>
 {% include 'sar/dekan/kelola-sar-2/ModalEdit.volt' %}
 {% endblock %}
 
@@ -146,6 +156,25 @@
 
     </script>
     <script>
+            $(".lock-button").click(function(){
+                var id = $(this).data("id");
+                var jenjang = $(this).data("jenjang");
+                swal({
+                    title: "Anda yakin untuk Mengunci Jenjang "+jenjang+"?",
+                    text: "Mengunci nilai SAR akan menjadikan nilai sasaran tidak dapat diubah kembali!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        $("#lock-id").val(id);
+                        $("#lock-form").submit();
+                    } else {
+                        return;
+                    }
+                    });
+            });
             $('#modal-edit').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 

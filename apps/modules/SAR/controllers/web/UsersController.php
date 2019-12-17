@@ -23,6 +23,7 @@ class UsersController extends Controller {
    public function loginAction() { 
       $nip = $this->request->getPost("nip");
       $password = $this->request->getPost("password");
+      
 
       if ($this->session->has("auth")) {
          return $this->dispatcher->forward(array( 
@@ -37,7 +38,7 @@ class UsersController extends Controller {
          $service = new LoginService($userRepository);
 
          $response = $service->execute($request);
-
+       
          if ($response === false) { 
             $this->flashSession->error("Incorrect credentials"); 
             return $this->dispatcher->forward(array( 
@@ -47,8 +48,7 @@ class UsersController extends Controller {
          $this->session->set('auth', array(
             'nip' => $response->nip,
             'nama' => $response->nama,
-            'id_fakultas' => $response->id_fakultas,
-            'id_jurusan' => $response->id_jurusan,
+            'idJurusan' => $response->idJurusan,
             'jabatan' => $response->jabatan
          )); 
       } 

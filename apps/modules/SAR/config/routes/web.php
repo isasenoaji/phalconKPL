@@ -54,12 +54,28 @@ $router->add('/kelolasar-1/set'
     'action'     => 'setSar',
 ]);
 
+$router->add('/kelolasar-1/lock'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar1',
+    'action'     => 'lockSar',
+]);
+
 $router->add('/kelolasar-2/set'
 	,[
 	'namespace'  => 'KPL\SAR\Controllers\Web',
 	'module' =>'SAR',
     'controller' => 'Sar2',
     'action'     => 'setSar',
+]);
+
+$router->add('/kelolasar-2/lock'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar2',
+    'action'     => 'lockSar',
 ]);
 
 $router->add('/kelolasar-3/set'
@@ -70,6 +86,14 @@ $router->add('/kelolasar-3/set'
     'action'     => 'setSar',
 ]);
 
+$router->add('/kelolasar-3/lock'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar3',
+    'action'     => 'lockSar',
+]);
+
 $router->add('/kelolasar-4/set'
 	,[
 	'namespace'  => 'KPL\SAR\Controllers\Web',
@@ -78,12 +102,28 @@ $router->add('/kelolasar-4/set'
     'action'     => 'setSar',
 ]);
 
+$router->add('/kelolasar-4/lock'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar4',
+    'action'     => 'lockSar',
+]);
+
 $router->add('/kelolasar-5/set'
 	,[
 	'namespace'  => 'KPL\SAR\Controllers\Web',
 	'module' =>'SAR',
     'controller' => 'Sar5',
     'action'     => 'setSar',
+]);
+
+$router->add('/kelolasar-5/lock'
+	,[
+	'namespace'  => 'KPL\SAR\Controllers\Web',
+	'module' =>'SAR',
+    'controller' => 'Sar5',
+    'action'     => 'lockSar',
 ]);
 
 $router->add('/testing'

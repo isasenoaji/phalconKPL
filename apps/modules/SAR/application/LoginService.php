@@ -18,13 +18,15 @@ class LoginService
     public function execute(LoginRequest $request)
     {
         $user = $this->userRepository->byId($request->nip);
-        if ($user->password() === $request->password) {
-            return new LoginResponse(
-                $user->nip(),
-                $user->nama(),
-                $user->idJurusan(),
-                $user->jabatan()
-            );
+        if($user){
+            if ($user->password() === $request->password) {
+                return new LoginResponse(
+                    $user->nip(),
+                    $user->nama(),
+                    $user->idJurusan(),
+                    $user->jabatan()
+                );
+            }
         }
         return false;
     }

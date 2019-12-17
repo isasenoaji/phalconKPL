@@ -6,8 +6,7 @@ class LoginResponse
 {
     public $nip;
     public $nama;
-    public $id_fakultas;
-    public $id_jurusan;
+    public $idJurusan;
     public $jabatan;
 
     public function __construct($nip, $nama, $idJurusan, $jabatan)

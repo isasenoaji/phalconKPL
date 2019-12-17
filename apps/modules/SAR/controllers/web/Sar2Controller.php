@@ -9,12 +9,19 @@ use KPL\SAR\Application\SarSupportRequest;
 use KPL\SAR\Application\SarSupportService;
 use KPL\SAR\Application\SetSasaranSarService;
 use KPL\SAR\Application\SetSasaranSarRequest;
-use Phalcon\Http\Response;
+use KPL\SAR\Application\SetLockSarRequest;
+use KPL\SAR\Application\SetLockSarService;
 
 class Sar2Controller extends Controller
 {
     public function indexAction()
     {
+        if (!$this->session->has("auth")) {
+            $this->flashSession->error("Anda perlu login");
+            return $this->dispatcher->forward(array( 
+            'controller' => 'users', 'action' => 'index' 
+             )); 
+        } 
         $TIPESAR = 2;
         $NIP = $this->session->get("auth")['nip'];
         
@@ -25,7 +32,7 @@ class Sar2Controller extends Controller
         $ResponseSarM = $ServiceSarM->execute($RequestSarM);
 
         //process institut
-        $jurusan = $this->session->get("auth")['id_jurusan'];
+        $jurusan = $this->session->get("auth")['idJurusan'];
         $RequestSarS = new SarSupportRequest($NIP,$jurusan);
         $SarRepository = $this->di->get('sql_sars_repository',array(1));
         $ServiceSarS = new SarSupportService($SarRepository);
@@ -61,6 +68,25 @@ class Sar2Controller extends Controller
             return $this->response->redirect('/kelolasar-2');
         }
         
+    }
+
+    public function lockSarAction()
+    {
+        if ($this->request->isPost()) {
+            $TIPESAR = 2;
+            $NIP = $this->session->get("auth")['nip'];
+            $idSar = $this->request->getPost("id");
+            $RequestLockSar = new SetLockSarRequest($TIPESAR,$NIP,$idSar);
+            $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
+            $SetLockService = new SetLockSarService($SarRepository);
+            $ResponsLockSar = $SetLockService->execute($RequestLockSar);
+            $this->flashSession->success("Sukses mengisi sasaran .."); 
+            return $this->response->redirect("/kelolasar-2");
+        }
+        else{
+            $this->flashSession->error("Incorrect Method .."); 
+            return $this->response->redirect("/kelolasar-2");
+        }
     }
 
 }

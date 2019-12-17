@@ -56,10 +56,11 @@ class SqlSar2Repository implements SarRepository {
     public function getAllSarSupport($Param): ?array {
         $db = $this->di->getShared('db');
 
-        $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode,sar.id_jurusan, sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode ,jurusan.nama as jurusan
-                FROM sar3 sar,periode,jenjang, jurusan
-                WHERE sar.id_jurusan=2 and periode.id = sar.id_periode and periode.status = 1 
-                AND jenjang.id = sar.id_jenjang and jurusan.id = sar.id_jurusan;";
+        $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode,fakultas.nama AS nama_fakultas,
+                     sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
+                FROM sar2 sar,periode,jenjang,fakultas,jurusan
+                WHERE periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang
+                AND fakultas.id = sar.id_fakultas and jurusan.id_fakultas = fakultas.id AND jurusan.id =:id_jurusan";
 
             $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
                 'id_jurusan' => $Param,
@@ -72,7 +73,7 @@ class SqlSar2Repository implements SarRepository {
                                 $row['id'],
                                 $row['nama_jenjang'],
                                 $row['nama_periode'],
-                                $row['jurusan'],
+                                $row['nama_fakultas'],
                                 $row['capaian'],
                                 $row['sasaran'],
                                 $row['nip'],

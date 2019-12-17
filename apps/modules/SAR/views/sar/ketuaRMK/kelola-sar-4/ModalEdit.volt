@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h3 class="modal-title">Edit SAR</h3>
             </div>
-            <form id="edit-sopir" method="post" action="" class="form-horizontal" enctype="multipart/form-data">
+            <form id="edit-sopir" method="post" action="/kelolasar-4/set" class="form-horizontal" enctype="multipart/form-data">
               <div class="modal-body">
                 <div class="alert alert-danger hidden" id="alertformE"></div>
                 <div class="form-group row">
@@ -19,12 +19,6 @@
                     <label for="sasaran" class="col-sm-3 control-label required">Sasaran</label>
                     <div class="col-sm-8">
                       <input type="number" class="form-control" required name="sasaran"  id="edt_sasaran">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="capaian" class="col-sm-3 control-label required">Capaian</label>
-                    <div class="col-sm-8">
-                      <input type="number" class="form-control" required name="capaian" id="edt_capaian">
                     </div>
                 </div>
                 

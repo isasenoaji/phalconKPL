@@ -5,7 +5,8 @@ namespace KPL\SAR\Controllers\Web;
 use Phalcon\Mvc\Controller;
 use KPL\SAR\Application\SarMasterRequest;
 use KPL\SAR\Application\SarMasterService;
-use KPL\SAR\Application\SarMasterResponse;
+use KPL\SAR\Application\SetSasaranSarService;
+use KPL\SAR\Application\SetSasaranSarRequest;
 use Phalcon\Http\Response;
 
 class Sar5Controller extends Controller
@@ -28,6 +29,25 @@ class Sar5Controller extends Controller
         $this->view->pick('sar/dosen/kelola-sar-5/index');
     }
 
-    // public function get
+    public function setSarAction()
+    {
+        if ($this->request->isPost()) {
+            $TIPESAR = 2;
+            $NIP = $this->session->get("auth")['nip'];
+            $idSar = $this->request->getPost("id");
+            $sasaran = $this->request->getPost("sasaran");
+            $RequestSetSar = new SetSasaranSarRequest($TIPESAR,$NIP,$idSar,$sasaran);
+            $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
+            $SetSasaranService = new SetSasaranSarService($SarRepository);
+            $ResponsSetSar = $SetSasaranService->execute($RequestSetSar);
+            $this->flashSession->success("Sukses mengisi sasaran .."); 
+            return $this->response->redirect('/kelolasar-5');
+        }
+        else{
+            $this->flashSession->error("Incorrect Method"); 
+            return $this->response->redirect('/kelolasar-5');
+        }
+        
+    }
 
 }

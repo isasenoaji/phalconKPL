@@ -43,9 +43,12 @@ class Sar1Controller extends Controller
             $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
             $SetSasaranService = new SetSasaranSarService($SarRepository);
             $ResponsSetSar = $SetSasaranService->execute($RequestSetSar);
-            var_dump($ResponsSetSar);
-            
-            exit;
+            $this->flashSession->success("Sukses mengisi sasaran .."); 
+            return $this->response->redirect('/kelolasar-1');
+        }
+        else{
+            $this->flashSession->error("Incorrect Method"); 
+            return $this->response->redirect('/kelolasar-1');
         }
         
     }

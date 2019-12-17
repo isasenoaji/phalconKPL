@@ -4,7 +4,7 @@
 namespace KPL\SAR\Domain\Model;
 
 
-class Sar {
+abstract class Sar {
     public $id;
     public $periode;
     public $capaian;
@@ -16,9 +16,14 @@ class Sar {
         $this->id = $id;
         $this->periode = $periode;
         $this->capaian = $capaian;
-        $this->sasaran = $sasaran;
         $this->pengisi = $pengisi;
         $this->IsLocked = $IsLocked;
+
+        if ($sasaran >= 0.0 && $sasaran <= 4.0) {
+            $this->sasaran = $sasaran;
+        } else {
+            throw new \InvalidArgumentException();
+        }
     }
 
     public function id() {
@@ -44,4 +49,6 @@ class Sar {
     public function lockSar() {
         $this->isLocked = true;
     }
+
+    public abstract function generateToArray();
 }

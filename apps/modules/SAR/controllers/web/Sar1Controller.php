@@ -68,7 +68,7 @@ class Sar1Controller extends Controller
             $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
             $SetLockService = new SetLockSarService($SarRepository);
             $ResponsLockSar = $SetLockService->execute($RequestLockSar);
-            $this->flashSession->success("Sukses mengisi sasaran .."); 
+            $this->flashSession->success("Sukses mengunci sasaran .."); 
             return $this->response->redirect("/kelolasar-1");
         }
         else{

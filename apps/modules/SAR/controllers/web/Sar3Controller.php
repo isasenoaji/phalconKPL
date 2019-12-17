@@ -48,7 +48,7 @@ class Sar3Controller extends Controller
         $SarAssigmentM = $ResponseSarM->SarAssigment;
         $SarAssigmentS1 = $ResponseSarS1->SarAssigment;
         $SarAssigmentS2 = $ResponseSarS2->SarAssigment;
-        
+
         $ListSar = $this->session->get("ListSar");
 
         $this->view->setVar('SarAssigmentM',$SarAssigmentM);
@@ -91,7 +91,7 @@ class Sar3Controller extends Controller
             $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
             $SetLockService = new SetLockSarService($SarRepository);
             $ResponsLockSar = $SetLockService->execute($RequestLockSar);
-            $this->flashSession->success("Sukses mengisi sasaran .."); 
+            $this->flashSession->success("Sukses mengunci sasaran .."); 
             return $this->response->redirect("/kelolasar-3");
         }
         else{

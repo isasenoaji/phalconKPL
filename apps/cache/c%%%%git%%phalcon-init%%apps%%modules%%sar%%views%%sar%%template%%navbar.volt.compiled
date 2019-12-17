@@ -7,12 +7,7 @@
                      </span>
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">NAMA</strong>
-                     </span> <span class="text-muted text-xs block">Admin<b class="caret"></b></span> </span> </a>
-                <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                    <li><a href="">Profile</a></li>
-                    <li class="divider"></li>
-                    <li><a href="<?= $this->url->get('https://phalcon-init.local/SAR/Users/logout') ?>">Logout</a></li>
-                </ul>
+                     </span> 
             </div>
             <div class="logo-element">
                 SAR

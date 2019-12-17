@@ -20,7 +20,8 @@ class Sar5Controller extends Controller
         $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
         $ServiceSar = new SarMasterService($SarRepository);
         $ResponseSar = $ServiceSar->execute($RequestSar);
-        
+
+    
         $SarAssigment = $ResponseSar->SarAssigment;
         $this->view->setVar('SarAssigment',$SarAssigment);
         $this->view->setVar('TipeSar',$ListSar);

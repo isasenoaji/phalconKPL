@@ -110,7 +110,7 @@
 <script>
 
         $(document).ready(function(){
-            $("#sidebar-sar").addClass("active");
+            $("#sidebar-sar2").addClass("active");
             $('.dataTables-example').DataTable({
                 pageLength: 25,
                 responsive: true,

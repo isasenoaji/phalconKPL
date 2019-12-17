@@ -60,11 +60,10 @@ class SqlSar5Repository implements SarRepository {
                                 $row['nama_jenjang'],
                                 $row['nama_jurusan'],
                                 $row['nama_rmk'],
-                                $row['sasaran'],
-                                $row['capaian'],
-                                $row['nama_jurusan'],
                                 $row['sasaran_rmk'],
                                 $row['capaian_rmk'],
+                                $row['sasaran'],
+                                $row['capaian'],
                                 $row['nip'],
                                 $row['locked']
                 );

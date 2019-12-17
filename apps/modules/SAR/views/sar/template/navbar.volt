@@ -24,23 +24,23 @@
             {% if TipeSar != null %}
             {% for tipe in TipeSar  %}
                 {% if tipe === 1 %}
-                <li id="sidebar-sar">
+                <li id="sidebar-sar1">
                     <a href="/kelolasar-1"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 1</span></a>
                 </li>
                 {% elseif tipe === 2 %}
-                <li id="sidebar-sar">
+                <li id="sidebar-sar2">
                     <a href="/kelolasar-2"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 2</span></a>
                 </li>
                 {% elseif tipe === 3 %}
-                <li id="sidebar-sar">
+                <li id="sidebar-sar3">
                     <a href="/kelolasar-3"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 3</span></a>
                 </li>
                 {% elseif tipe === 4 %}
-                <li id="sidebar-sar">
+                <li id="sidebar-sar4">
                     <a href="/kelolasar-4"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 4</span></a>
                 </li>
                 {% elseif tipe === 5 %}
-                <li id="sidebar-sar">
+                <li id="sidebar-sar5">
                     <a href="/kelolasar-5"><i class="fa fa-edit"></i> <span class="nav-label">Kelola SAR 5</span></a>
                 </li>
                 {% endif %}

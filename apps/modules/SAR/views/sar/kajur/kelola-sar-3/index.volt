@@ -142,7 +142,7 @@
 <script>
 
         $(document).ready(function(){
-            $("#sidebar-sar").addClass("active");
+            $("#sidebar-sar3").addClass("active");
             $('.dataTables-example').DataTable({
                 pageLength: 25,
                 responsive: true,

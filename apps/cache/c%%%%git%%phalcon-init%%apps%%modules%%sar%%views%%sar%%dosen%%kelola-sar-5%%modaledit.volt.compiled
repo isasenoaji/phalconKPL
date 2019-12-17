@@ -9,9 +9,9 @@
               <div class="modal-body">
                 <div class="alert alert-danger hidden" id="alertformE"></div>
                 <div class="form-group row">
-                    <label for="jenjang" class="col-sm-3 control-label required">Jenjang</label>
+                    <label for="mk" class="col-sm-3 control-label required">Mata Kuliah</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" required name="jenjang" id="edt_jenjang" disabled>
+                      <input type="text" class="form-control" required name="mk" id="edt_mk" disabled>
                       <input type="hidden" class="form-control" required name="id" id="id">
                     </div>
                 </div>

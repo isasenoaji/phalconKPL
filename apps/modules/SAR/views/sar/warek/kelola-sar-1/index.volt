@@ -23,12 +23,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h3>SAR 1</h3>
-                <div class="text-right">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-form">
-                    APALAH
-                    </button>
-                </div>
+                <h3><center><strong>Institut</strong></center></h3>
             </div>
             <div class="ibox-content">
           		{{ flashSession.output() }}
@@ -82,7 +77,7 @@
 <script>
 
         $(document).ready(function(){
-            $("#sidebar-sar").addClass("active");
+            $("#sidebar-sar1").addClass("active");
             $('.dataTables-example').DataTable({
                 pageLength: 25,
                 responsive: true,

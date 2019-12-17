@@ -60,7 +60,18 @@
                             
                                 <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
                                 <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
-                                <td>-</td>
+                                <td>
+                                    <form id="button-edit" method="POST" action="">
+                                        <input type="hidden" name="id" value="">
+                                        <button type="button" class="btn btn-warning btn-xs" 
+                                            data-id = "{{ sar['id'] }}"
+                                            data-mk = "{{ sar['MkKelas'] }}"
+                                            data-sasaran = "{{ sar['sasaran'] }}"
+                                            data-capaian = "{{ sar['capaian'] }}"
+                                            data-toggle="modal" data-target="#modal-edit"
+                                            ><span class="fa fa-pencil"></span> Ubah</button>
+                                    </form>
+                                </td>
                             </tr>
                                 {% set i = i + 1 %}
                             {% endfor %}
@@ -80,7 +91,7 @@
 <script>
 
         $(document).ready(function(){
-            $("#sidebar-sar").addClass("active");
+            $("#sidebar-sar5").addClass("active");
             $('.dataTables-example').DataTable({
                 pageLength: 25,
                 responsive: true,
@@ -121,14 +132,14 @@
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 
                 var id = button.data('id');
-                var jenjang = button.data('jenjang');
+                var mk = button.data('mk');
                 var sasaran = button.data('sasaran');
                 var capaian = button.data('capaian');
 
                 var modal = $(this);
 
                 modal.find('.modal-body #id').val(id);
-                modal.find('.modal-body #edt_jenjang').val(jenjang);
+                modal.find('.modal-body #edt_mk').val(mk);
                 modal.find('.modal-body #edt_sasaran').val(sasaran);
                 modal.find('.modal-body #edt_capaian').val(capaian);
             });

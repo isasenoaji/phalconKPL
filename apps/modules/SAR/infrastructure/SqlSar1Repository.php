@@ -83,4 +83,23 @@ class SqlSar1Repository implements SarRepository {
         return null;
     }
 
+    public function update($nip,$idSar,$sasaran)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar1 SET sasaran=:sasaran
+                WHERE id=:idSar AND nip=:nip and locked=0";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+            'sasaran' => $sasaran,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
+    }
+
 }

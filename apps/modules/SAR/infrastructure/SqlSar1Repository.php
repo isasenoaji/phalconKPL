@@ -102,4 +102,21 @@ class SqlSar1Repository implements SarRepository {
             return False;
     }
 
+    public function lock($nip,$idSar)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar1 SET locked=1
+                WHERE id=:idSar AND nip=:nip";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
+    }
 }

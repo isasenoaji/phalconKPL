@@ -4,7 +4,7 @@ namespace KPL\SAR\Application;
 use KPL\SAR\Domain\Model\SarRepository;
 
 
-class SetSasaranSarService
+class SetLockSarService
 {
     private $SarRepository;
 
@@ -13,10 +13,11 @@ class SetSasaranSarService
         $this->SarRepository = $SarRepository;
     }
 
-    public function execute(SetSasaranSarRequest $request)
+    public function execute(SetLockSarRequest $request)
     {
-        $status = $this->SarRepository->update($request->NIP,$request->idSar,$request->sasaran);
+        $status = $this->SarRepository->lock($request->NIP,$request->idSar);
         
-        return new SetSasaranSarResponse($status);
+        return new SetLockSarResponse($status);
+
     }
 }

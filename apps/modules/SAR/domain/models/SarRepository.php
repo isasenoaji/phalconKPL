@@ -8,4 +8,5 @@ interface SarRepository {
     public function getAllSarSupport($Param) : ?array;
     public function getTipe();
     public function update($nip,$idSar,$sasaran);
+    public function lock($nip,$idSar);
 }

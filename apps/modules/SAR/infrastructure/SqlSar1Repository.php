@@ -146,32 +146,6 @@ class SqlSar1Repository implements SarRepository {
         return null;
     }
 
-    public function setOpenAccess($nip, $idSar)
-    {
-        $db = $this->di->getShared('db');
-        
-        $sql = "UPDATE sar2 set Isaccess=1 
-                WHERE id in 
-                    (select sar.id
-                     FROM sar2 sar,periode
-                     WHERE sar.id_periode = periode.id AND periode.status = 1 AND sar.id_jenjang =
-                        (
-                        SELECT sar.id_jenjang 
-                        FROM sar1 sar 
-                        WHERE sar.id =:idSar and sar.nip=:nip
-                        )
-                    )
-                ";
-
-        $result = $db->query($sql, [
-            'idSar' => $idSar,
-            'nip' =>$nip,
-        ]); 
-      
-        if($result)
-            return True;
-        else 
-            return False;
-    }
+    public function setOpenAccess($nip, $idSar){}
     
 }

@@ -78,6 +78,8 @@ class Sar1Controller extends Controller
             if($SetLockService->execute($RequestLockSar)->status){
                 $this->flashSession->success("Sukses mengunci sasaran .."); 
                 
+                $TIPESAR = 2; 
+                $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
                 $RequestOpenAccess = new SetOpenAccessRequest($idSar,$NIP);
                 $OpenAccessService = new SetOpenAccessService($SarRepository);
                 $OpenAccessService->execute($RequestOpenAccess);

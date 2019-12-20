@@ -156,17 +156,17 @@ class SqlSar3Repository implements SarRepository {
     {
         $db = $this->di->getShared('db');
         
-        $sql = "UPDATE sar4 set Isaccess=1 
+        $sql = "UPDATE sar3 set Isaccess=1 
                 WHERE id in
                     (
                     SELECT sar.id
-                    FROM sar4 sar,periode
-                    WHERE sar.id_periode = periode.id and periode.status = 1 and sar.id_rmk in 
+                    FROM sar3 sar,periode,
                         (
-                        SELECT rmk.id 
-                        FROM sar3 sar,rmk 
-                        WHERE sar.nip =:nip and sar.id=:idSar AND rmk.id_jurusan = sar.id_jurusan
-                        )
+                        SELECT jurusan.id as jsid, sar.id_jenjang as jjid
+                        FROM sar2 sar,fakultas,jurusan
+                        WHERE sar.id_fakultas = fakultas.id and fakultas.id = jurusan.id_fakultas and sar.nip =:nip and sar.id =:idSar
+                        ) M
+                    WHERE sar.id_periode = periode.id and periode.status = 1 and M.jjid = sar.id_jenjang and sar.id_jurusan = M.jsid
                     )
                 ";
 
@@ -180,5 +180,7 @@ class SqlSar3Repository implements SarRepository {
         else 
             return False;
     }
+
+    
 
 }

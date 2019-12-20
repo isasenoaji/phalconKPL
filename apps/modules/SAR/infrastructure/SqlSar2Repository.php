@@ -149,21 +149,21 @@ class SqlSar2Repository implements SarRepository {
         return null;
     }
 
+
     public function setOpenAccess($nip, $idSar)
     {
         $db = $this->di->getShared('db');
         
-        $sql = "UPDATE sar3 set Isaccess=1 
-                WHERE id in
-                    (
-                    SELECT sar.id
-                    FROM sar3 sar,periode,
+        $sql = "UPDATE sar2 set Isaccess=1 
+                WHERE id in 
+                    (select sar.id
+                     FROM sar2 sar,periode
+                     WHERE sar.id_periode = periode.id AND periode.status = 1 AND sar.id_jenjang =
                         (
-                        SELECT jurusan.id as jsid, sar.id_jenjang as jjid
-                        FROM sar2 sar,fakultas,jurusan
-                        WHERE sar.id_fakultas = fakultas.id and fakultas.id = jurusan.id_fakultas and sar.nip =:nip and sar.id =:idSar
-                        ) M
-                    WHERE sar.id_periode = periode.id and periode.status = 1 and M.jjid = sar.id_jenjang and sar.id_jurusan = M.jsid
+                        SELECT sar.id_jenjang 
+                        FROM sar1 sar 
+                        WHERE sar.id =:idSar and sar.nip=:nip
+                        )
                     )
                 ";
 
@@ -177,5 +177,6 @@ class SqlSar2Repository implements SarRepository {
         else 
             return False;
     }
+    
 
 }

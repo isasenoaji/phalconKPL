@@ -4,8 +4,8 @@ namespace KPL\SAR\Domain\Model;
 
 interface SarRepository {
    
-    public function getAllSarMaster($nip) : ?array;
-    public function getAllSarSupport($Param) : ?array;
+    public function getAllSarMaster($nip) : ?SarAssigments;
+    public function getAllSarSupport($Param) : ?SarSupportAssigments;
     public function getTipe();
     public function update($nip,$idSar,$sasaran);
     public function lock($nip,$idSar);

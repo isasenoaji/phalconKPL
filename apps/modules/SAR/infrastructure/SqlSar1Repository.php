@@ -4,6 +4,8 @@ namespace KPL\SAR\Infrastructure;
 use KPL\SAR\Domain\Model\Sar;
 use KPL\SAR\Domain\Model\SarRepository;
 use Phalcon\DiInterface;
+use KPL\SAR\Domain\Model\SarAssigments;
+use KPL\SAR\Domain\Model\SarSupportAssigments;
 use KPL\SAR\Domain\Model\Sar1;
 use KPL\SAR\Domain\Model\SasaranSarValue;
 
@@ -23,7 +25,7 @@ class SqlSar1Repository implements SarRepository {
         return $this->tipe;
     }
 
-    public function getAllSarMaster($nip): ?array {
+    public function getAllSarMaster($nip): ?SarAssigments {
         $db = $this->di->getShared('db');
 
         $sql = "SELECT jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode,
@@ -37,7 +39,7 @@ class SqlSar1Repository implements SarRepository {
         
       
         if ($result) {
-            $SarComponents = [];
+            $SarAssigments = new SarAssigments($this->getTipe(),$nip);
             foreach($result as $row){
                 $sar = new Sar1 (
                                 $row['id'],
@@ -49,15 +51,15 @@ class SqlSar1Repository implements SarRepository {
                                 $row['locked'],
                                 $row['IsAccess']
                 );
-                array_push($SarComponents,$sar);    
+                $SarAssigments->addComponents($sar);   
             }
-            return $SarComponents;
+            return $SarAssigments;
         }
 
         return null;
     }
 
-    public function getAllSarSupport($Param=null): ?array {
+    public function getAllSarSupport($Param=null): ?SarSupportAssigments {
         $db = $this->di->getShared('db');
 
         $sql = "SELECT jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode
@@ -68,7 +70,7 @@ class SqlSar1Repository implements SarRepository {
         
       
         if ($result) {
-            $SarComponents = [];
+            $SarSupportAssigments = new SarSupportAssigments($this->getTipe());
             foreach($result as $row){
                 $sar = new Sar1 (
                                 $row['id'],
@@ -80,9 +82,9 @@ class SqlSar1Repository implements SarRepository {
                                 $row['locked'],
                                 $row['IsAccess']
                 );
-                array_push($SarComponents,$sar);    
+                $SarSupportAssigments->addComponents($sar);
             }
-            return $SarComponents;
+            return $SarSupportAssigments;
         }
 
         return null;

@@ -14,11 +14,11 @@ class SarSupportService
 
     public function execute(SarSupportRequest $request)
     {
-        $SarAssigment = $this->SarRepository->getAllSarSupport($request->Param);
+        $SarSupportAssigments = $this->SarRepository->getAllSarSupport($request->Param);
         $response = new SarSupportResponse();
 
-        if ($SarAssigment) {
-            foreach ($SarAssigment as $row) {
+        if ($SarSupportAssigments) {
+            foreach ($SarSupportAssigments->getComponents() as $row) {
                 $response->addSarAssigment($row->generateToArray());
             }
         }

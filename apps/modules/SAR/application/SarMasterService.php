@@ -18,7 +18,7 @@ class SarMasterService
         $response = new SarMasterResponse();
 
         if ($SarAssigment) {
-            foreach ($SarAssigment as $row) {
+            foreach ($SarAssigment->getComponents() as $row) {
                 $response->addSarAssigment($row->generateToArray());
             }
         }

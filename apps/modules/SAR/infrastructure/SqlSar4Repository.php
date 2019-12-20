@@ -1,8 +1,10 @@
 <?php
 namespace KPL\SAR\Infrastructure;
 
-use KPL\SAR\Domain\Model\Sar;
+use KPL\SAR\Domain\Model\SarSupportAssigments;
+use KPL\SAR\Domain\Model\SarAssigments;
 use KPL\SAR\Domain\Model\SarRepository;
+use KPL\SAR\Domain\Model\Sar;
 use Phalcon\DiInterface;
 use KPL\SAR\Domain\Model\Sar4;
 use KPL\SAR\Domain\Model\SasaranSarValue;
@@ -16,15 +18,12 @@ class SqlSar4Repository implements SarRepository {
         $this->tipe = 4;
     }
 
-    public function save(Sar $sar) {
-        // TODO: Implement save() method.
-    }
 
     public function getTipe(){
         return $this->tipe;
     }
 
-    public function getAllSarMaster($nip): ?array {
+    public function getAllSarMaster($nip): ?SarAssigments {
         $db = $this->di->getShared('db');
 
         //SAR 4 ditampilkan bersama SAR 3
@@ -46,7 +45,7 @@ class SqlSar4Repository implements SarRepository {
         ]);
       
         if ($result) {
-            $SarComponents = [];
+            $SarAssigments = new SarAssigments($this->getTipe(),$nip);
             foreach($result as $row){
                 $sar = new Sar4 (
                                 $row['id'],
@@ -62,31 +61,36 @@ class SqlSar4Repository implements SarRepository {
                                 $row['locked'],
                                 $row['IsAccess']
                 );
-                array_push($SarComponents,$sar);    
+                $SarAssigments->addComponents($sar);   
             }
-            return $SarComponents;
+            return $SarAssigments;
         }
 
         return null;
     }
 
-    public function getAllSarSupport($Param): ?array {
+    public function getAllSarSupport($Param): ?SarSupportAssigments {
         $db = $this->di->getShared('db');
 
-        $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode, 
-                        sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode,jurusan.nama as jurusan
-                FROM sar3 sar,periode,jenjang,jurusan
-                WHERE periode.id = sar.id_periode and 
-                      periode.status = 1 AND jenjang.id = sar.id_jenjang
-                      and sar.id_jurusan =:id_jurusan  and jurusan.id = sar.id_jurusan
-               ";
+        //SAR 4 ditampilkan bersama SAR 3
+        $sql = "SELECT sar4.id,periode.nama AS nama_periode,M.jjnama AS nama_jenjang,M.rmknama AS nama_rmk,
+                        sar4.capaian,sar4.sasaran,M.jsnama AS nama_jurusan,M.sar3sasaran AS sasaran_jurusan,
+                        M.sar3capaian AS capaian_jurusan, sar4.nip, sar4.locked, sar4.IsAccess as IsAccess
+                FROM sar4,periode,(
+                                    SELECT rmk.id AS rmkid,jenjang.nama AS jjnama,rmk.nama AS rmknama,jurusan.nama AS jsnama,
+                                             sar3.sasaran AS sar3sasaran,sar3.capaian AS sar3capaian
+                                    FROM sar3,rmk,jenjang,jurusan
+                                    WHERE sar3.id_jurusan = rmk.id_jurusan and sar3.id_jenjang = rmk.id_jenjang and
+                                        jenjang.id = sar3.id_jenjang and jenjang.id = rmk.id_jenjang and jurusan.id = rmk.id_jurusan
+                                    ) M
+                WHERE  sar4.id_periode = periode.id AND periode.status = 1
+                        AND M.rmkid = sar4.id_rmk ";
 
-            $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
-                'id_jurusan' => $Param,
-            ]);
-
+        $result = $db->fetchAll($sql, \Phalcon\Db::FETCH_ASSOC, [ 
+        ]);
+      
         if ($result) {
-            $SarComponents = [];
+            $SarSupportAssigments = new SarSupportAssigments($this->getTipe());
             foreach($result as $row){
                 $sar = new Sar4 (
                                 $row['id'],
@@ -102,9 +106,9 @@ class SqlSar4Repository implements SarRepository {
                                 $row['locked'],
                                 $row['IsAccess']
                 );
-                array_push($SarComponents,$sar);    
+                $SarSupportAssigments->addComponents($sar);   
             }
-            return $SarComponents;
+            return $SarSupportAssigments;
         }
 
         return null;

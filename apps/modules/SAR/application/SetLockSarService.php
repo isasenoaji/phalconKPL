@@ -15,9 +15,11 @@ class SetLockSarService
 
     public function execute(SetLockSarRequest $request)
     {
-        $status = $this->SarRepository->lock($request->NIP,$request->idSar);
-        
-        return new SetLockSarResponse($status);
+       $status = $this->SarRepository->lock($request->NIP,$request->idSar);
+        if($status)
+            return new SetLockSarResponse(true);
+        else
+            return new SetLockSarResponse(false);
 
     }
 }

@@ -69,9 +69,11 @@ class Sar3Controller extends Controller
             $RequestSetSar = new SetSasaranSarRequest($TIPESAR,$NIP,$idSar,$sasaran);
             $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
             $SetSasaranService = new SetSasaranSarService($SarRepository);
-            $ResponsSetSar = $SetSasaranService->execute($RequestSetSar);
-
-            $this->flashSession->success("Sukses mengisi sasaran .."); 
+            if($SetSasaranService->execute($RequestSetSar)){
+                $this->flashSession->success("Sukses mengisi sasaran .."); 
+            }else{
+                $this->flashSession->error("Nilai sasaran tidak sesuai");
+            }
             return $this->response->redirect('/kelolasar-3');
         }
         else{

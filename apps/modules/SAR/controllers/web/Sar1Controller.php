@@ -9,6 +9,7 @@ use KPL\SAR\Application\SetSasaranSarRequest;
 use KPL\SAR\Application\SetSasaranSarService;
 use KPL\SAR\Application\SetLockSarRequest;
 use KPL\SAR\Application\SetLockSarService;
+use Phalcon\Http\Message\Exception\InvalidArgumentException;
 
 class Sar1Controller extends Controller
 {
@@ -44,12 +45,15 @@ class Sar1Controller extends Controller
             $NIP = $this->session->get("auth")['nip'];
             $idSar = $this->request->getPost("id");
             $sasaran = $this->request->getPost("sasaran");
-            // var_dump($sasaran);exit;
+
             $RequestSetSar = new SetSasaranSarRequest($TIPESAR,$NIP,$idSar,$sasaran);
             $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
             $SetSasaranService = new SetSasaranSarService($SarRepository);
-            $ResponsSetSar = $SetSasaranService->execute($RequestSetSar);
-            $this->flashSession->success("Sukses mengisi sasaran .."); 
+            if($SetSasaranService->execute($RequestSetSar)){
+                $this->flashSession->success("Sukses mengisi sasaran .."); 
+            }else{
+                $this->flashSession->error("Nilai sasaran tidak sesuai");
+            }
             return $this->response->redirect('/kelolasar-1');
         }
         else{
@@ -64,10 +68,12 @@ class Sar1Controller extends Controller
             $TIPESAR = 1;
             $NIP = $this->session->get("auth")['nip'];
             $idSar = $this->request->getPost("id");
+
             $RequestLockSar = new SetLockSarRequest($TIPESAR,$NIP,$idSar);
             $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
             $SetLockService = new SetLockSarService($SarRepository);
             $ResponsLockSar = $SetLockService->execute($RequestLockSar);
+
             $this->flashSession->success("Sukses mengunci sasaran .."); 
             return $this->response->redirect("/kelolasar-1");
         }

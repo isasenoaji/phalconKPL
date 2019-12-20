@@ -12,7 +12,7 @@ class Sar5 extends Sar {
     private $capaian_rmk;
     private $kelas;
 
-    public function __construct($id, $periode, $MkKelas, $kelas, $jenjang,$jurusan, $rmk, $sasaran_rmk, $capaian_rmk, $capaian, $sasaran, $pengisi, $IsLocked = false) {
+    public function __construct($id, $periode, $MkKelas, $kelas, $jenjang,$jurusan, $rmk, $sasaran_rmk, $capaian_rmk, $capaian, $sasaran, $pengisi, $IsLocked = false,  $IsAccess) {
         $this->MkKelas = $MkKelas;
         $this->kelas = $kelas;
         $this->jurusan = $jurusan;
@@ -21,7 +21,7 @@ class Sar5 extends Sar {
         $this->capaian_rmk = $capaian_rmk;
         $this->jenjang = $jenjang;
 
-        parent::__construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked);
+        parent::__construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked, $IsAccess);
     }
 
     public function generateToArray(){
@@ -37,7 +37,8 @@ class Sar5 extends Sar {
                     "sasaran_rmk" => $this->sasaran_rmk,
                     "capaian_rmk" => $this->capaian_rmk,
                     "pengisi" => $this->pengisi,
-                    "IsLocked" => $this->IsLocked
+                    "IsLocked" => $this->IsLocked,
+                    "IsAccess" => $this->IsAccess
         );
     }
 

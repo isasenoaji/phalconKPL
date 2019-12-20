@@ -11,13 +11,15 @@ abstract class Sar {
     public $sasaran;
     public $pengisi;
     public $IsLocked;
+    public $IsAccess;
 
-    protected function __construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked) {
+    protected function __construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked, $IsAccess) {
         $this->id = $id;
         $this->periode = $periode;
         $this->capaian = $capaian;
         $this->pengisi = $pengisi;
         $this->IsLocked = $IsLocked;
+        $this->IsAccess = $IsAccess;
 
         if ($sasaran >= 0.0 && $sasaran <= 4.0) {
             $this->sasaran = $sasaran;

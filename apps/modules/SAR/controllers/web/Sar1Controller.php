@@ -9,6 +9,8 @@ use KPL\SAR\Application\SetSasaranSarRequest;
 use KPL\SAR\Application\SetSasaranSarService;
 use KPL\SAR\Application\SetLockSarRequest;
 use KPL\SAR\Application\SetLockSarService;
+use KPL\SAR\Application\SetOpenAccessRequest;
+use KPL\SAR\Application\SetOpenAccessService;
 use Phalcon\Http\Message\Exception\InvalidArgumentException;
 
 class Sar1Controller extends Controller
@@ -75,6 +77,10 @@ class Sar1Controller extends Controller
             
             if($SetLockService->execute($RequestLockSar)->status){
                 $this->flashSession->success("Sukses mengunci sasaran .."); 
+                
+                $RequestOpenAccess = new SetOpenAccessRequest($idSar,$NIP);
+                $OpenAccessService = new SetOpenAccessService($SarRepository);
+                $OpenAccessService->execute($RequestOpenAccess);
             }else{
                 $this->flashSession->error("Gagal, Nilai sasaran belum diisi");
             }

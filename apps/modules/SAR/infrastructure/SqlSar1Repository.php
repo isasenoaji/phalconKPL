@@ -26,7 +26,8 @@ class SqlSar1Repository implements SarRepository {
     public function getAllSarMaster($nip): ?array {
         $db = $this->di->getShared('db');
 
-        $sql = "SELECT jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode
+        $sql = "SELECT jenjang.nama as nama_jenjang,sar1.id, sar1.id_jenjang, sar1.id_periode, sar1.capaian, sar1.sasaran, sar1.nip,sar1.locked, periode.nama as nama_periode,
+                        sar1.Isaccess as IsAccess
                 FROM sar1,periode,jenjang
                 WHERE sar1.nip = :nip and periode.id = sar1.id_periode and periode.status = 1 and jenjang.id = sar1.id_jenjang";
 
@@ -45,7 +46,8 @@ class SqlSar1Repository implements SarRepository {
                                 $row['capaian'],
                                 $row['sasaran'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -75,7 +77,8 @@ class SqlSar1Repository implements SarRepository {
                                 $row['capaian'],
                                 $row['sasaran'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -141,6 +144,34 @@ class SqlSar1Repository implements SarRepository {
         }
 
         return null;
+    }
+
+    public function setOpenAccess($nip, $idSar)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar2 set Isaccess=1 
+                WHERE id in 
+                    (select sar.id
+                     FROM sar2 sar,periode
+                     WHERE sar.id_periode = periode.id AND periode.status = 1 AND sar.id_jenjang =
+                        (
+                        SELECT sar.id_jenjang 
+                        FROM sar1 sar 
+                        WHERE sar.id =:idSar and sar.nip=:nip
+                        )
+                    )
+                ";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
     }
     
 }

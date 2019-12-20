@@ -27,9 +27,10 @@ class SqlSar4Repository implements SarRepository {
     public function getAllSarMaster($nip): ?array {
         $db = $this->di->getShared('db');
 
+        //SAR 4 ditampilkan bersama SAR 3
         $sql = "SELECT sar4.id,periode.nama AS nama_periode,M.jjnama AS nama_jenjang,M.rmknama AS nama_rmk,
                         sar4.capaian,sar4.sasaran,M.jsnama AS nama_jurusan,M.sar3sasaran AS sasaran_jurusan,
-                        M.sar3capaian AS capaian_jurusan, sar4.nip, sar4.locked
+                        M.sar3capaian AS capaian_jurusan, sar4.nip, sar4.locked, sar4.IsAccess as IsAccess
                 FROM sar4,periode,(
                                     SELECT rmk.id AS rmkid,jenjang.nama AS jjnama,rmk.nama AS rmknama,jurusan.nama AS jsnama,
                                              sar3.sasaran AS sar3sasaran,sar3.capaian AS sar3capaian
@@ -58,7 +59,8 @@ class SqlSar4Repository implements SarRepository {
                                 $row['sasaran_jurusan'],
                                 $row['capaian_jurusan'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -97,7 +99,8 @@ class SqlSar4Repository implements SarRepository {
                                 $row['sasaran_jurusan'],
                                 $row['capaian_jurusan'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -163,6 +166,35 @@ class SqlSar4Repository implements SarRepository {
         }
 
         return null;
+    }
+
+    public function setOpenAccess($nip, $idSar)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar5 set Isaccess =1 
+                WHERE id in 
+                    (
+                    SELECT sar.id 
+                    FROM sar5 sar,periode 
+                    WHERE sar.id_periode = periode.id AND periode.status = 1 and sar.id_mkkelas in 
+                        (
+                        SELECT mkkelas.id 
+                        FROM sar4 sar,mkkelas 
+                        WHERE sar.id =:idSar and sar.nip =:nip and mkkelas.id_rmk = sar.id_rmk 
+                        )
+                    )
+                ";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
     }
 
 }

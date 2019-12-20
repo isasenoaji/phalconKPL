@@ -8,10 +8,10 @@ class Sar2 extends Sar {
     private $fakultas;
     
 
-    public function __construct($id, $jenjang,$periode, $fakultas, $capaian, $sasaran, $pengisi, $IsLocked = false) {
+    public function __construct($id, $jenjang,$periode, $fakultas, $capaian, $sasaran, $pengisi, $IsLocked = false,  $IsAccess) {
         $this->jenjang = $jenjang;
         $this->fakultas = $fakultas;
-        parent::__construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked);
+        parent::__construct($id,$periode, $capaian, $sasaran, $pengisi, $IsLocked, $IsAccess);
     }
 
     public function generateToArray(){
@@ -22,7 +22,8 @@ class Sar2 extends Sar {
                     "sasaran" => $this->sasaran,
                     "capaian" => $this->capaian,
                     "pengisi" => $this->pengisi,
-                    "IsLocked" => $this->IsLocked
+                    "IsLocked" => $this->IsLocked,
+                    "IsAccess" => $this->IsAccess,
         );
     }
 }

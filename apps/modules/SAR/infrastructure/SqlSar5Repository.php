@@ -25,16 +25,16 @@ class SqlSar5Repository implements SarRepository {
         $sql = "SELECT sar5.id,periode.nama AS nama_periode,mkkelas.nama AS nama_mk,
             	mkkelas.kelas AS nama_kelas, M.jjnama AS nama_jenjang,
                 M.jsnama AS nama_jurusan,M.rmknama AS nama_rmk,
-                M.sar4sasaran as sasaran_rmk,M.sar4capaian as capaian_rmk,sar5.sasaran,sar5.capaian,sar5.nip,sar5.locked
+                M.sar4sasaran as sasaran_rmk,M.sar4capaian as capaian_rmk,sar5.sasaran,sar5.capaian,sar5.nip,sar5.locked, sar5.IsAccess as IsAccess
                 FROM sar5,mkkelas,periode,
-                (
-                SELECT sar4.id,rmk.id AS rmkid,rmk.nama AS rmknama, jenjang.nama AS jjnama,
-                        jurusan.nama AS jsnama,sar4.sasaran AS sar4sasaran,sar4.capaian AS sar4capaian
-                FROM sar4,rmk,jurusan,jenjang
-                WHERE rmk.id = sar4.id_rmk and
-                      rmk.id_jurusan = jurusan.id and
-                      rmk.id_jenjang = jenjang.id
-                ) M
+                    (
+                    SELECT sar4.id,rmk.id AS rmkid,rmk.nama AS rmknama, jenjang.nama AS jjnama,
+                            jurusan.nama AS jsnama,sar4.sasaran AS sar4sasaran,sar4.capaian AS sar4capaian
+                    FROM sar4,rmk,jurusan,jenjang
+                    WHERE rmk.id = sar4.id_rmk and
+                        rmk.id_jurusan = jurusan.id and
+                        rmk.id_jenjang = jenjang.id
+                    ) M
                 WHERE sar5.id_mkkelas = mkkelas.id AND
                       M.rmkid = mkkelas.id_rmk and
                       sar5.nip =:nip and
@@ -61,7 +61,8 @@ class SqlSar5Repository implements SarRepository {
                                 $row['sasaran'],
                                 $row['capaian'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -131,5 +132,7 @@ class SqlSar5Repository implements SarRepository {
 
         return null;
     }
+    public function setOpenAccess($nip, $idSar)
+    {}
 
 }

@@ -11,6 +11,8 @@ use KPL\SAR\Application\SetSasaranSarService;
 use KPL\SAR\Application\SetSasaranSarRequest;
 use KPL\SAR\Application\SetLockSarRequest;
 use KPL\SAR\Application\SetLockSarService;
+use KPL\SAR\Application\SetOpenAccessRequest;
+use KPL\SAR\Application\SetOpenAccessService;
 
 class Sar2Controller extends Controller
 {
@@ -83,7 +85,11 @@ class Sar2Controller extends Controller
             $SarRepository = $this->di->get('sql_sars_repository',array($TIPESAR));
             $SetLockService = new SetLockSarService($SarRepository);
             if($SetLockService->execute($RequestLockSar)->status){
-                $this->flashSession->success("Sukses mengunci sasaran .."); 
+                $this->flashSession->success("Sukses mengunci sasaran ..");
+                
+                $RequestOpenAccess = new SetOpenAccessRequest($idSar,$NIP);
+                $OpenAccessService = new SetOpenAccessService($SarRepository);
+                $OpenAccessService->execute($RequestOpenAccess);
             }else{
                 $this->flashSession->error("Gagal, Nilai sasaran belum diisi");
             }

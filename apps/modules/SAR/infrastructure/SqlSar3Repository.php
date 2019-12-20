@@ -27,7 +27,7 @@ class SqlSar3Repository implements SarRepository {
     public function getAllSarMaster($nip): ?array {
         $db = $this->di->getShared('db');
 
-        $sql = "SELECT s.*, p.nama as nama_periode, js.nama as nama_jurusan, jj.nama as nama_jenjang
+        $sql = "SELECT s.*, p.nama as nama_periode, js.nama as nama_jurusan, jj.nama as nama_jenjang, s.IsAccess as IsAccess
                 FROM sar3 s, periode p, jurusan js, jenjang jj
                 WHERE s.id_periode = p.id AND p.status = 1 AND s.id_jenjang = jj.id AND s.id_jurusan = js.id AND s.nip = :nip;
                 ";
@@ -47,7 +47,8 @@ class SqlSar3Repository implements SarRepository {
                                 $row['sasaran'],
                                 $row['capaian'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -82,7 +83,8 @@ class SqlSar3Repository implements SarRepository {
                                 $row['capaian'],
                                 $row['sasaran'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -148,6 +150,35 @@ class SqlSar3Repository implements SarRepository {
         }
 
         return null;
+    }
+
+    public function setOpenAccess($nip, $idSar)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar4 set Isaccess=1 
+                WHERE id in
+                    (
+                    SELECT sar.id
+                    FROM sar4 sar,periode
+                    WHERE sar.id_periode = periode.id and periode.status = 1 and sar.id_rmk in 
+                        (
+                        SELECT rmk.id 
+                        FROM sar3 sar,rmk 
+                        WHERE sar.nip =:nip and sar.id=:idSar AND rmk.id_jurusan = sar.id_jurusan
+                        )
+                    )
+                ";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
     }
 
 }

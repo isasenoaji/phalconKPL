@@ -10,4 +10,5 @@ interface SarRepository {
     public function update($nip,$idSar,$sasaran);
     public function lock($nip,$idSar);
     public function getSasaran($nip,$idSar);
+    public function setOpenAccess($nip, $idSar);
 }

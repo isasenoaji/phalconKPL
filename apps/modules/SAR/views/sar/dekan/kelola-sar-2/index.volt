@@ -35,7 +35,6 @@
                                 <th>Jenjang</th>
                                 <th>Sasaran</th>
                                 <th>Capaian</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,9 +45,6 @@
                                 <td>{{ sar['jenjang'] }}</td>
                                 <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
                                 <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
-                                <td>
-                                   
-                                </td>
                             </tr>
                                 {% set i = i + 1 %}
                             {% endfor %}
@@ -80,21 +76,25 @@
                               <td>{{ sar['sasaran'] == 0 ? '-' :  sar['sasaran'] }}</td>
                               <td>{{ sar['capaian'] == 0 ? '-' :  sar['capaian']}}</td>
                               <td>
-                                  {% if sar['IsLocked'] == 0 %}
-                                    <button type="button" class="btn btn-warning btn-xs" 
-                                    data-id = "{{ sar['id'] }}"
-                                    data-jenjang = "{{ sar['jenjang'] }}"
-                                    data-sasaran = "{{ sar['sasaran'] }}"
-                                    data-toggle="modal" data-target="#modal-edit"
-                                    ><span class="fa fa-pencil"></span> Ubah</button>
+                                    {% if sar['IsAccess'] == 1 %}
+                                        {% if sar['IsLocked'] == 0 %}
+                                            <button type="button" class="btn btn-warning btn-xs" 
+                                            data-id = "{{ sar['id'] }}"
+                                            data-jenjang = "{{ sar['jenjang'] }}"
+                                            data-sasaran = "{{ sar['sasaran'] }}"
+                                            data-toggle="modal" data-target="#modal-edit"
+                                            ><span class="fa fa-pencil"></span> Ubah</button>
 
-                                    <button type="button" class="btn btn-danger btn-xs lock-button" 
-                                    data-id = "{{ sar['id'] }}"
-                                    data-locked = "{{ sar['IsLocked'] }}"
-                                    data-jenjang = "{{ sar['jenjang'] }}"
-                                    ><span class="fa fa-unlock"></span> Lock</button>
+                                            <button type="button" class="btn btn-danger btn-xs lock-button" 
+                                            data-id = "{{ sar['id'] }}"
+                                            data-locked = "{{ sar['IsLocked'] }}"
+                                            data-jenjang = "{{ sar['jenjang'] }}"
+                                            ><span class="fa fa-unlock"></span> Lock</button>
+                                        {% else %}
+                                            <label class="label label-primary"><i class="fa fa-lock"></i> Terkunci</label>
+                                        {% endif %}
                                     {% else %}
-                                        <label class="label label-primary"><i class="fa fa-lock"></i> Terkunci</label>
+                                        <label class="label label-warning"><i class="fa fa-lock"></i> Belum dapat diakses</label>
                                     {% endif %}
                               </td>
                           </tr>

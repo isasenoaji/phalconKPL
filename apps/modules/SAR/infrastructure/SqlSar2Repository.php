@@ -23,7 +23,7 @@ class SqlSar2Repository implements SarRepository {
         $db = $this->di->getShared('db');
 
             $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode,fakultas.nama AS nama_fakultas,
-                            sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
+                            sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode, sar.IsAccess as IsAccess
                     FROM sar2 sar,periode,jenjang,fakultas
                      WHERE sar.nip =:nip and periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang
                     AND fakultas.id = sar.id_fakultas";
@@ -45,7 +45,8 @@ class SqlSar2Repository implements SarRepository {
                                 $row['capaian'],
                                 $row['sasaran'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -59,7 +60,7 @@ class SqlSar2Repository implements SarRepository {
         $db = $this->di->getShared('db');
 
         $sql = "SELECT jenjang.nama as nama_jenjang,sar.id, sar.id_jenjang, sar.id_periode,fakultas.nama AS nama_fakultas,
-                     sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode
+                     sar.capaian, sar.sasaran, sar.nip,sar.locked, periode.nama as nama_periode, sar.IsAccess as IsAccess
                 FROM sar2 sar,periode,jenjang,fakultas,jurusan
                 WHERE periode.id = sar.id_periode and periode.status = 1 AND jenjang.id = sar.id_jenjang
                 AND fakultas.id = sar.id_fakultas and jurusan.id_fakultas = fakultas.id AND jurusan.id =:id_jurusan";
@@ -79,7 +80,8 @@ class SqlSar2Repository implements SarRepository {
                                 $row['capaian'],
                                 $row['sasaran'],
                                 $row['nip'],
-                                $row['locked']
+                                $row['locked'],
+                                $row['IsAccess']
                 );
                 array_push($SarComponents,$sar);    
             }
@@ -145,6 +147,35 @@ class SqlSar2Repository implements SarRepository {
         }
 
         return null;
+    }
+
+    public function setOpenAccess($nip, $idSar)
+    {
+        $db = $this->di->getShared('db');
+        
+        $sql = "UPDATE sar3 set Isaccess=1 
+                WHERE id in
+                    (
+                    SELECT sar.id
+                    FROM sar3 sar,periode,
+                        (
+                        SELECT jurusan.id as jsid, sar.id_jenjang as jjid
+                        FROM sar2 sar,fakultas,jurusan
+                        WHERE sar.id_fakultas = fakultas.id and fakultas.id = jurusan.id_fakultas and sar.nip =:nip and sar.id =:idSar
+                        ) M
+                    WHERE sar.id_periode = periode.id and periode.status = 1 and M.jjid = sar.id_jenjang and sar.id_jurusan = M.jsid
+                    )
+                ";
+
+        $result = $db->query($sql, [
+            'idSar' => $idSar,
+            'nip' =>$nip,
+        ]); 
+      
+        if($result)
+            return True;
+        else 
+            return False;
     }
 
 }

@@ -5,6 +5,7 @@ use KPL\SAR\Domain\Model\Sar;
 use KPL\SAR\Domain\Model\SarRepository;
 use Phalcon\DiInterface;
 use KPL\SAR\Domain\Model\Sar4;
+use KPL\SAR\Domain\Model\SasaranSarValue;
 
 class SqlSar4Repository implements SarRepository {
     protected $di;
@@ -12,7 +13,7 @@ class SqlSar4Repository implements SarRepository {
 
     public function __construct(DiInterface $di) {
         $this->di = $di;
-        $this->tipe = 1;
+        $this->tipe = 4;
     }
 
     public function save(Sar $sar) {
@@ -141,6 +142,27 @@ class SqlSar4Repository implements SarRepository {
             return True;
         else 
             return False;
+    }
+
+    public function getSasaran($nip,$idSar)
+    {
+        $db = $this->di->getShared('db');
+
+        $sql = "SELECT sasaran
+                FROM sar4
+                WHERE nip=:nip AND id =:idsar 
+                ";
+
+        $result = $db->fetchOne($sql, \Phalcon\Db::FETCH_ASSOC,
+        ['nip'=>$nip, 'idsar'=>$idSar]);
+        
+      
+        if ($result) {
+            $sasaranValue = new SasaranSarValue($this->getTipe(),$nip,$idSar,$result["sasaran"]);
+            return $sasaranValue;
+        }
+
+        return null;
     }
 
 }

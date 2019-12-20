@@ -9,4 +9,5 @@ interface SarRepository {
     public function getTipe();
     public function update($nip,$idSar,$sasaran);
     public function lock($nip,$idSar);
+    public function getSasaran($nip,$idSar);
 }

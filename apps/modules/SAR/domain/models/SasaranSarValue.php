@@ -14,12 +14,14 @@ class SasaranSarValue
         $this->TipeSar = $TipeSar;
         $this->NIP = $NIP;
         $this->idSar = $idSar;
-        $this->sasaran = $sasaran;
+        $this->sasaran = (int)$sasaran;
     }
+
 
     public function CheckSasaran(){
         $value = $this->sasaran;
-        if($value <= 0 || $value >= 4){
+
+        if($value < 0  || $value > 4 || $value == null){
             return false;
         }
         else {

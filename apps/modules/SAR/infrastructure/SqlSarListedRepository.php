@@ -10,7 +10,6 @@ use KPL\SAR\Domain\Model\SarListedRepository;
 class SqlSarListedRepository implements SarListedRepository
 {
     protected $di;
-
     public function __construct(DiInterface $di) 
     {
         $this->di = $di;

@@ -5,12 +5,14 @@ use KPL\SAR\Domain\Model\Sar;
 use KPL\SAR\Domain\Model\SarRepository;
 use Phalcon\DiInterface;
 use KPL\SAR\Domain\Model\Sar2;
+use KPL\SAR\Domain\Model\SasaranSarValue;
 
 class SqlSar2Repository implements SarRepository {
     protected $di;
-
+    protected $tipe;
     public function __construct(DiInterface $di) {
         $this->di = $di;
+        $this->tipe = 2;
     }
 
     public function getTipe(){
@@ -122,6 +124,27 @@ class SqlSar2Repository implements SarRepository {
             return True;
         else 
             return False;
+    }
+
+    public function getSasaran($nip,$idSar)
+    {
+        $db = $this->di->getShared('db');
+
+        $sql = "SELECT sasaran
+                FROM sar2
+                WHERE nip=:nip AND id =:idsar 
+                ";
+
+        $result = $db->fetchOne($sql, \Phalcon\Db::FETCH_ASSOC,
+        ['nip'=>$nip, 'idsar'=>$idSar]);
+        
+      
+        if ($result) {
+            $sasaranValue = new SasaranSarValue($this->getTipe(),$nip,$idSar,$result["sasaran"]);
+            return $sasaranValue;
+        }
+
+        return null;
     }
 
 }

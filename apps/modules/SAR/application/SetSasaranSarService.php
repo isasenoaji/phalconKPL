@@ -15,8 +15,9 @@ class SetSasaranSarService
 
     public function execute(SetSasaranSarRequest $request)
     {
+
         $SasaranValue = new SasaranSarValue($request->TIPESAR,$request->NIP,$request->idSar,$request->sasaran);
-        if($SasaranValue){
+        if($SasaranValue->CheckSasaran()){
             $status = $this->SarRepository->update($request->NIP,$request->idSar,$request->sasaran);
             return new SetSasaranSarResponse($status);
         }
